@@ -1,0 +1,15 @@
+2008-03-26  Dimitar Dimitrov  <dinuxbg@gmail.com>
+
+	* avr-isp500-mass: Initial release 01.00 .
+
+
+2008-09-09  Dimitar Dimitrov  <dinuxbg@gmail.com>
+	
+	* avr-isp500-mass: Fixed osccal issue related to the inverted 
+	MISO input line. Bumped release to version 0101.
+
+2009-06-03  Dimitar Dimitrov  <dinuxbg@gmail.com>
+	
+	* avr-isp500-mass: Fixed autonomous programming when no USB
+	connection is present. Bumped release to version 0102.
+

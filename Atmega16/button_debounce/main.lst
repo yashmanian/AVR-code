@@ -1,0 +1,71 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	main
+  18               	main:
+  19               	.LFB2:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 B89A      		sbi 55-32,0
+  25               	.LM3:
+  26 0002 88B3      		in r24,56-32
+  27 0004 91E0      		ldi r25,lo8(1)
+  28 0006 8927      		eor r24,r25
+  29 0008 88BB      		out 56-32,r24
+  30               	.LM4:
+  31 000a B998      		cbi 55-32,1
+  32               	.LM5:
+  33 000c C19A      		sbi 56-32,1
+  34               	.LM6:
+  35 000e BA9A      		sbi 55-32,2
+  36 0010 80E0      		ldi r24,lo8(0)
+  37 0012 90E0      		ldi r25,hi8(0)
+  38               	.LVL0:
+  39               	.LM7:
+  40 0014 31E0      		ldi r19,lo8(1)
+  41               	.LM8:
+  42 0016 24E0      		ldi r18,lo8(4)
+  43               	.L7:
+  44               	.LM9:
+  45 0018 B199      		sbic 54-32,1
+  46 001a 00C0      		rjmp .L7
+  47               	.LM10:
+  48 001c 892B      		or r24,r25
+  49 001e 01F0      		breq .L3
+  50 0020 80E0      		ldi r24,lo8(0)
+  51 0022 90E0      		ldi r25,hi8(0)
+  52 0024 00C0      		rjmp .L7
+  53               	.L3:
+  54               	.LM11:
+  55 0026 88B3      		in r24,56-32
+  56               	.LVL1:
+  57 0028 8327      		eor r24,r19
+  58 002a 88BB      		out 56-32,r24
+  59               	.LM12:
+  60 002c 88B3      		in r24,56-32
+  61 002e 8227      		eor r24,r18
+  62 0030 88BB      		out 56-32,r24
+  63 0032 81E0      		ldi r24,lo8(1)
+  64 0034 90E0      		ldi r25,hi8(1)
+  65               	.LVL2:
+  66 0036 00C0      		rjmp .L7
+  67               	.LFE2:
+  93               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+E:\DOCUME~1\YASHMA~1\LOCALS~1\Temp/ccm1anz0.s:2      *ABS*:0000003f __SREG__
+E:\DOCUME~1\YASHMA~1\LOCALS~1\Temp/ccm1anz0.s:3      *ABS*:0000003e __SP_H__
+E:\DOCUME~1\YASHMA~1\LOCALS~1\Temp/ccm1anz0.s:4      *ABS*:0000003d __SP_L__
+E:\DOCUME~1\YASHMA~1\LOCALS~1\Temp/ccm1anz0.s:5      *ABS*:00000034 __CCP__
+E:\DOCUME~1\YASHMA~1\LOCALS~1\Temp/ccm1anz0.s:6      *ABS*:00000000 __tmp_reg__
+E:\DOCUME~1\YASHMA~1\LOCALS~1\Temp/ccm1anz0.s:7      *ABS*:00000001 __zero_reg__
+E:\DOCUME~1\YASHMA~1\LOCALS~1\Temp/ccm1anz0.s:18     .text:00000000 main
+
+NO UNDEFINED SYMBOLS

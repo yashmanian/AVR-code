@@ -1,0 +1,32 @@
+2012-09-20 Stanimir Petev <support @ olimex. com>
+
+	* avr-isp500-tiny: release 1.07 fixed the problem in stand-alone mode, 
+	which occured when trying to program both flash and eeprom
+	* avr-isp500-tiny: release 1.07 fixed a problem causing a delay in 
+	programming if using hex files with little meaningful bits
+
+2008-03-26  Dimitar Dimitrov  <dinuxbg@gmail.com>
+
+	* avr-isp500-tiny: Initial release 01.00 .
+
+
+2008-04-08  Dimitar Dimitrov  <dinuxbg@gmail.com>
+	
+	* avr-isp500: Changed AVR-ISP500-PICO name to AVR-ISP500. Made a
+	release 0101.
+
+
+2008-09-09  Dimitar Dimitrov  <dinuxbg@gmail.com>
+	
+	* avr-isp500, avr-isp-tiny: Fixed osccal issue related to the inverted 
+	MISO input line. Bumped release to version 0102.
+
+
+2008-11-19  Dimitar Dimitrov  <dinuxbg@gmail.com>
+	
+	* avr-isp500, avr-isp-tiny: Fixed USB OUT ZLP handling for CDC.
+
+2009-02-02  Dimitar Dimitrov  <dinuxbg@gmail.com>
+	
+	* avr-isp500, avr-isp-tiny: Fixed CDC descriptors.
+

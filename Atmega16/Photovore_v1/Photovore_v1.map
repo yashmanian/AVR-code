@@ -1,0 +1,559 @@
+Archive member included because of file (symbol)
+
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+                              buffer.o (__udivmodhi4)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodsi4.o)
+                              uart.o (__udivmodsi4)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+                              c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o (exit)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                              a2d.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+uartReadyTx         0x1               uart.o
+uartRxBuffer        0x8               uart.o
+uartBufferedTx      0x1               uart.o
+a2dCompleteFlag     0x1               a2d.o
+uartTxBuffer        0x8               uart.o
+uartRxOverflow      0x2               uart.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00002000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+LOAD Photovore_v1.o
+LOAD a2d.o
+LOAD uart.o
+LOAD buffer.o
+LOAD rprintf.o
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4\libm.a
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4\libc.a
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000     0x1368
+ *(.vectors)
+ .vectors       0x00000000       0x26 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+ .progmem.data  0x00000026       0x1e Photovore_v1.o
+ .progmem.data  0x00000044       0x11 rprintf.o
+                0x00000056                . = ALIGN (0x2)
+ *fill*         0x00000055        0x1 00
+                0x00000056                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x00000056        0x0 linker stubs
+ *(.trampolines*)
+                0x00000056                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x00000056                __ctors_start = .
+ *(.ctors)
+                0x00000056                __ctors_end = .
+                0x00000056                __dtors_start = .
+ *(.dtors)
+                0x00000056                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x00000056        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+                0x00000056                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x00000056        0xc c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x00000062       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                0x00000062                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x00000072        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+ *(.init9)
+ *(.text)
+ .text          0x00000076        0x2 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+                0x00000076                __vector_1
+                0x00000076                __vector_12
+                0x00000076                __bad_interrupt
+                0x00000076                __vector_6
+                0x00000076                __vector_3
+                0x00000076                __vector_17
+                0x00000076                __vector_7
+                0x00000076                __vector_5
+                0x00000076                __vector_4
+                0x00000076                __vector_9
+                0x00000076                __vector_2
+                0x00000076                __vector_15
+                0x00000076                __vector_8
+                0x00000076                __vector_10
+                0x00000076                __vector_16
+                0x00000076                __vector_18
+ .text          0x00000078      0x29e Photovore_v1.o
+                0x000000a2                delay_cycles
+                0x0000011c                LED_on
+                0x00000154                servo_left
+                0x00000138                LED_off
+                0x000001aa                servo_right
+                0x00000200                main
+                0x00000078                configure_ports
+ .text          0x00000316      0x210 a2d.o
+                0x0000044e                a2dIsComplete
+                0x000004dc                a2dConvert8bit
+                0x0000036a                a2dOff
+                0x00000394                a2dSetPrescaler
+                0x00000464                a2dConvert10bit
+                0x00000316                a2dInit
+                0x000003bc                a2dSetReference
+                0x000004fc                __vector_14
+                0x000003fa                a2dSetChannel
+                0x00000424                a2dStartConvert
+ .text          0x00000526      0x3b2 uart.o
+                0x0000079a                uartSendTxBuffer
+                0x00000690                uartSendByte
+                0x00000564                uartInitBuffers
+                0x000006f2                uartReceiveByte
+                0x0000077e                uartAddToTxBuffer
+                0x00000844                __vector_11
+                0x00000592                uartSetRxHandler
+                0x000007b6                __vector_13
+                0x00000740                uartFlushReceiveBuffer
+                0x00000526                uartInit
+                0x00000756                uartReceiveBufferIsEmpty
+                0x000005b6                uartSetBaudRate
+                0x0000067e                uartGetTxBuffer
+                0x000006b8                uartGetByte
+                0x0000066c                uartGetRxBuffer
+ .text          0x000008d8      0x384 buffer.o
+                0x00000bd2                bufferIsNotFull
+                0x00000944                bufferGetFromFront
+                0x00000ab6                bufferGetAtIndex
+                0x000009f8                bufferDumpFromFront
+                0x000008d8                bufferInit
+                0x00000b28                bufferAddToEnd
+                0x00000c26                bufferFlush
+ .text          0x00000c5c      0x69c rprintf.o
+                0x0000113a                rprintf1RamRom
+                0x00000e62                rprintfu08
+                0x00000ea8                rprintfu32
+                0x00000cb2                rprintfStr
+                0x00000cf2                rprintfStrLen
+                0x00000dc0                rprintfProgStr
+                0x00000e82                rprintfu16
+                0x00000c5c                rprintfInit
+                0x00000c80                rprintfChar
+                0x00000e16                rprintfCRLF
+                0x00000e28                rprintfu04
+                0x00000ee0                rprintfNum
+ .text          0x000012f8        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+ .text          0x000012f8        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodsi4.o)
+ .text          0x000012f8        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .text          0x000012f8        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                0x000012f8                . = ALIGN (0x2)
+ *(.text.*)
+ .text.libgcc   0x000012f8       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+                0x000012f8                __udivmodhi4
+ .text.libgcc   0x00001320       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodsi4.o)
+                0x00001320                __udivmodsi4
+ .text.libgcc   0x00001364        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .text.libgcc   0x00001364        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                0x00001364                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x00001364        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+                0x00001364                exit
+                0x00001364                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x00001364        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ *(.fini0)
+                0x00001368                _etext = .
+
+.data           0x00800060        0x0 load address 0x00001368
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+ .data          0x00800060        0x0 Photovore_v1.o
+ .data          0x00800060        0x0 a2d.o
+ .data          0x00800060        0x0 uart.o
+ .data          0x00800060        0x0 buffer.o
+ .data          0x00800060        0x0 rprintf.o
+ .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+ .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodsi4.o)
+ .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x00800060                . = ALIGN (0x2)
+                0x00800060                _edata = .
+                0x00800060                PROVIDE (__data_end, .)
+
+.bss            0x00800060       0x99
+                0x00800060                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+ .bss           0x00800060        0x0 Photovore_v1.o
+ .bss           0x00800060        0x0 a2d.o
+ .bss           0x00800060       0x82 uart.o
+ .bss           0x008000e2        0x0 buffer.o
+ .bss           0x008000e2        0x2 rprintf.o
+ .bss           0x008000e4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+ .bss           0x008000e4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodsi4.o)
+ .bss           0x008000e4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+ .bss           0x008000e4        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+ *(.bss*)
+ *(COMMON)
+ COMMON         0x008000e4        0x1 a2d.o
+                0x008000e4                a2dCompleteFlag
+ COMMON         0x008000e5       0x14 uart.o
+                0x008000e5                uartReadyTx
+                0x008000e6                uartRxBuffer
+                0x008000ee                uartBufferedTx
+                0x008000ef                uartTxBuffer
+                0x008000f7                uartRxOverflow
+                0x008000f9                PROVIDE (__bss_end, .)
+                0x00001368                __data_load_start = LOADADDR (.data)
+                0x00001368                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x008000f9        0x0
+                0x008000f9                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x008000f9                PROVIDE (__noinit_end, .)
+                0x008000f9                _end = .
+                0x008000f9                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab           0x00000000     0x222c
+ *(.stab)
+ .stab          0x00000000      0x87c Photovore_v1.o
+ .stab          0x0000087c      0x3fc a2d.o
+                                0x6b4 (size before relaxing)
+ .stab          0x00000c78      0x6a8 uart.o
+                                0x984 (size before relaxing)
+ .stab          0x00001320      0x5e8 buffer.o
+                                0x8c4 (size before relaxing)
+ .stab          0x00001908      0x924 rprintf.o
+                                0xc78 (size before relaxing)
+
+.stabstr        0x00000000     0x13d2
+ *(.stabstr)
+ .stabstr       0x00000000     0x13d2 Photovore_v1.o
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges
+ *(.debug_aranges)
+
+.debug_pubnames
+ *(.debug_pubnames)
+
+.debug_info
+ *(.debug_info)
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev
+ *(.debug_abbrev)
+
+.debug_line
+ *(.debug_line)
+
+.debug_frame
+ *(.debug_frame)
+
+.debug_str
+ *(.debug_str)
+
+.debug_loc
+ *(.debug_loc)
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(Photovore_v1.elf elf32-avr)
+LOAD linker stubs
+
+Cross Reference Table
+
+Symbol                                            File
+LED_off                                           Photovore_v1.o
+LED_on                                            Photovore_v1.o
+__bad_interrupt                                   c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__bss_end                                         c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+__bss_start                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+__do_clear_bss                                    c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_clear_bss.o)
+                                                  rprintf.o
+                                                  uart.o
+                                                  a2d.o
+__heap_end                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__init                                            c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__stack                                           c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__udivmodhi4                                      c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodhi4.o)
+                                                  rprintf.o
+                                                  buffer.o
+__udivmodsi4                                      c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_udivmodsi4.o)
+                                                  rprintf.o
+                                                  uart.o
+__vector_1                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_10                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_11                                       uart.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_12                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_13                                       uart.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_14                                       a2d.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_15                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_16                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_17                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_18                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_2                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_3                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_4                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_5                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_6                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_7                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_8                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_9                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vector_default                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+__vectors                                         c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+_exit                                             c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+a2dCompleteFlag                                   a2d.o
+a2dConvert10bit                                   a2d.o
+a2dConvert8bit                                    a2d.o
+                                                  Photovore_v1.o
+a2dInit                                           a2d.o
+                                                  Photovore_v1.o
+a2dIsComplete                                     a2d.o
+a2dOff                                            a2d.o
+a2dSetChannel                                     a2d.o
+a2dSetPrescaler                                   a2d.o
+                                                  Photovore_v1.o
+a2dSetReference                                   a2d.o
+                                                  Photovore_v1.o
+a2dStartConvert                                   a2d.o
+bufferAddToEnd                                    buffer.o
+                                                  uart.o
+bufferDumpFromFront                               buffer.o
+bufferFlush                                       buffer.o
+bufferGetAtIndex                                  buffer.o
+bufferGetFromFront                                buffer.o
+                                                  uart.o
+bufferInit                                        buffer.o
+                                                  uart.o
+bufferIsNotFull                                   buffer.o
+configure_ports                                   Photovore_v1.o
+delay_cycles                                      Photovore_v1.o
+exit                                              c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr4\libgcc.a(_exit.o)
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+main                                              Photovore_v1.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr4/crtm8.o
+rprintf1RamRom                                    rprintf.o
+                                                  Photovore_v1.o
+rprintfCRLF                                       rprintf.o
+rprintfChar                                       rprintf.o
+rprintfInit                                       rprintf.o
+                                                  Photovore_v1.o
+rprintfNum                                        rprintf.o
+rprintfProgStr                                    rprintf.o
+rprintfStr                                        rprintf.o
+rprintfStrLen                                     rprintf.o
+rprintfu04                                        rprintf.o
+rprintfu08                                        rprintf.o
+rprintfu16                                        rprintf.o
+rprintfu32                                        rprintf.o
+servo_left                                        Photovore_v1.o
+servo_right                                       Photovore_v1.o
+uartAddToTxBuffer                                 uart.o
+uartBufferedTx                                    uart.o
+uartFlushReceiveBuffer                            uart.o
+uartGetByte                                       uart.o
+uartGetRxBuffer                                   uart.o
+uartGetTxBuffer                                   uart.o
+uartInit                                          uart.o
+                                                  Photovore_v1.o
+uartInitBuffers                                   uart.o
+uartReadyTx                                       uart.o
+uartReceiveBufferIsEmpty                          uart.o
+uartReceiveByte                                   uart.o
+uartRxBuffer                                      uart.o
+uartRxOverflow                                    uart.o
+uartSendByte                                      uart.o
+                                                  Photovore_v1.o
+uartSendTxBuffer                                  uart.o
+uartSetBaudRate                                   uart.o
+                                                  Photovore_v1.o
+uartSetRxHandler                                  uart.o
+uartTxBuffer                                      uart.o

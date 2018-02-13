@@ -1,0 +1,744 @@
+Archive member included because of file (symbol)
+
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+                              timer.o (__mulsi3)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                              buffer.o (__udivmodhi4)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                              uart.o (__udivmodsi4)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+                              timer.o (__divmodsi4)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                              c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o (exit)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                              main.o (__do_copy_data)
+c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                              uart.o (__do_clear_bss)
+
+Allocating common symbols
+Common symbol       size              file
+
+uartReadyTx         0x1               uart.o
+Timer0Reg0          0x4               timer.o
+uartRxBuffer        0x8               uart.o
+TimerPauseReg       0x4               timer.o
+Timer2Reg0          0x4               timer.o
+uartBufferedTx      0x1               uart.o
+a2dCompleteFlag     0x1               a2d.o
+uartTxBuffer        0x8               uart.o
+uartRxOverflow      0x2               uart.o
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+text             0x00000000         0x00020000         xr
+data             0x00800060         0x0000ffa0         rw !x
+eeprom           0x00810000         0x00010000         rw !x
+fuse             0x00820000         0x00000400         rw !x
+lock             0x00830000         0x00000400         rw !x
+signature        0x00840000         0x00000400         rw !x
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+LOAD main.o
+LOAD uart.o
+LOAD buffer.o
+LOAD timer.o
+LOAD a2d.o
+LOAD rprintf.o
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libm.a
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5\libc.a
+LOAD c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a
+
+.hash
+ *(.hash)
+
+.dynsym
+ *(.dynsym)
+
+.dynstr
+ *(.dynstr)
+
+.gnu.version
+ *(.gnu.version)
+
+.gnu.version_d
+ *(.gnu.version_d)
+
+.gnu.version_r
+ *(.gnu.version_r)
+
+.rel.init
+ *(.rel.init)
+
+.rela.init
+ *(.rela.init)
+
+.rel.text
+ *(.rel.text)
+ *(.rel.text.*)
+ *(.rel.gnu.linkonce.t*)
+
+.rela.text
+ *(.rela.text)
+ *(.rela.text.*)
+ *(.rela.gnu.linkonce.t*)
+
+.rel.fini
+ *(.rel.fini)
+
+.rela.fini
+ *(.rela.fini)
+
+.rel.rodata
+ *(.rel.rodata)
+ *(.rel.rodata.*)
+ *(.rel.gnu.linkonce.r*)
+
+.rela.rodata
+ *(.rela.rodata)
+ *(.rela.rodata.*)
+ *(.rela.gnu.linkonce.r*)
+
+.rel.data
+ *(.rel.data)
+ *(.rel.data.*)
+ *(.rel.gnu.linkonce.d*)
+
+.rela.data
+ *(.rela.data)
+ *(.rela.data.*)
+ *(.rela.gnu.linkonce.d*)
+
+.rel.ctors
+ *(.rel.ctors)
+
+.rela.ctors
+ *(.rela.ctors)
+
+.rel.dtors
+ *(.rel.dtors)
+
+.rela.dtors
+ *(.rela.dtors)
+
+.rel.got
+ *(.rel.got)
+
+.rela.got
+ *(.rela.got)
+
+.rel.bss
+ *(.rel.bss)
+
+.rela.bss
+ *(.rela.bss)
+
+.rel.plt
+ *(.rel.plt)
+
+.rela.plt
+ *(.rela.plt)
+
+.text           0x00000000     0x128e
+ *(.vectors)
+ .vectors       0x00000000       0x54 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+                0x00000000                __vectors
+                0x00000000                __vector_default
+ *(.vectors)
+ *(.progmem.gcc*)
+ *(.progmem*)
+ .progmem.data  0x00000054       0x31 main.o
+ .progmem.data  0x00000085       0x1c timer.o
+                0x00000091                TimerRTCPrescaleFactor
+                0x00000085                TimerPrescaleFactor
+ .progmem.data  0x000000a1       0x11 rprintf.o
+                0x000000b2                . = ALIGN (0x2)
+                0x000000b2                __trampolines_start = .
+ *(.trampolines)
+ .trampolines   0x000000b2        0x0 linker stubs
+ *(.trampolines*)
+                0x000000b2                __trampolines_end = .
+ *(.jumptables)
+ *(.jumptables*)
+ *(.lowtext)
+ *(.lowtext*)
+                0x000000b2                __ctors_start = .
+ *(.ctors)
+                0x000000b2                __ctors_end = .
+                0x000000b2                __dtors_start = .
+ *(.dtors)
+                0x000000b2                __dtors_end = .
+ SORT(*)(.ctors)
+ SORT(*)(.dtors)
+ *(.init0)
+ .init0         0x000000b2        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+                0x000000b2                __init
+ *(.init0)
+ *(.init1)
+ *(.init1)
+ *(.init2)
+ .init2         0x000000b2        0xc c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+ *(.init2)
+ *(.init3)
+ *(.init3)
+ *(.init4)
+ .init4         0x000000be       0x16 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                0x000000be                __do_copy_data
+ .init4         0x000000d4       0x10 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x000000d4                __do_clear_bss
+ *(.init4)
+ *(.init5)
+ *(.init5)
+ *(.init6)
+ *(.init6)
+ *(.init7)
+ *(.init7)
+ *(.init8)
+ *(.init8)
+ *(.init9)
+ .init9         0x000000e4        0x8 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+ *(.init9)
+ *(.text)
+ .text          0x000000ec        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+                0x000000ec                __vector_1
+                0x000000ec                __vector_12
+                0x000000ec                __bad_interrupt
+                0x000000ec                __vector_17
+                0x000000ec                __vector_2
+                0x000000ec                __vector_15
+                0x000000ec                __vector_10
+                0x000000ec                __vector_16
+                0x000000ec                __vector_18
+                0x000000ec                __vector_20
+ .text          0x000000f0      0x204 main.o
+                0x00000122                Check_IF_MrLCD_isBusy
+                0x000000fe                delay_cycles
+                0x00000100                LED_on
+                0x00000108                servo_left
+                0x0000016e                Send_A_String
+                0x00000114                Peek_A_Boo
+                0x00000104                LED_off
+                0x0000013c                Send_A_Command
+                0x0000010e                servo_right
+                0x0000019a                main
+                0x000000f0                configure_ports
+                0x00000156                Send_A_Character
+ .text          0x000002f4      0x248 uart.o
+                0x00000468                uartSendTxBuffer
+                0x00000340                uartSendByte
+                0x000004e8                uartInitBuffers
+                0x00000488                uartReceiveByte
+                0x000003ee                uartAddToTxBuffer
+                0x00000370                __vector_11
+                0x000002f4                uartSetRxHandler
+                0x000003fa                __vector_13
+                0x00000352                uartFlushReceiveBuffer
+                0x0000050a                uartInit
+                0x0000035c                uartReceiveBufferIsEmpty
+                0x000002fe                uartSetBaudRate
+                0x0000033a                uartGetTxBuffer
+                0x000004bc                uartGetByte
+                0x00000334                uartGetRxBuffer
+ .text          0x0000053c      0x160 buffer.o
+                0x00000676                bufferIsNotFull
+                0x00000556                bufferGetFromFront
+                0x00000600                bufferGetAtIndex
+                0x000005bc                bufferDumpFromFront
+                0x0000053c                bufferInit
+                0x00000628                bufferAddToEnd
+                0x0000068e                bufferFlush
+ .text          0x0000069c      0x682 timer.o
+                0x00000906                timer2GetOverflowCount
+                0x000007a2                timerDetach
+                0x0000072a                timer1SetPrescaler
+                0x000009c2                timer1PWMBOff
+                0x00000772                timer2GetPrescaler
+                0x00000bb6                __vector_6
+                0x0000069e                timer0Init
+                0x000009b4                timer1PWMAOff
+                0x000009d6                timer1PWMBSet
+                0x00000cc4                __vector_3
+                0x0000094c                timer1PWMInitICR
+                0x00000b5c                __vector_19
+                0x0000073e                timer0GetPrescaler
+                0x00000c10                __vector_7
+                0x000008de                timer0GetOverflowCount
+                0x00000c6a                __vector_5
+                0x000006f6                timerInit
+                0x00000734                timer2SetPrescaler
+                0x00000998                timer1PWMAOn
+                0x00000720                timer0SetPrescaler
+                0x0000069c                delay_us
+                0x00000adc                __vector_4
+                0x000008cc                timer0ClearOverflowCount
+                0x000009dc                __vector_9
+                0x000006c0                timer1Init
+                0x0000091c                timer1PWMInit
+                0x000009a6                timer1PWMBOn
+                0x000006d4                timer2Init
+                0x00000a82                __vector_8
+                0x000009d0                timer1PWMASet
+                0x0000078c                timerAttach
+                0x00000972                timer1PWMOff
+                0x00000758                timer1GetPrescaler
+                0x000008f4                timer2ClearOverflowCount
+                0x000007b8                timerPause
+ .text          0x00000d1e       0xae a2d.o
+                0x00000d72                a2dIsComplete
+                0x00000da0                a2dConvert8bit
+                0x00000d3e                a2dOff
+                0x00000d44                a2dSetPrescaler
+                0x00000d78                a2dConvert10bit
+                0x00000d1e                a2dInit
+                0x00000d4e                a2dSetReference
+                0x00000dae                __vector_14
+                0x00000d60                a2dSetChannel
+                0x00000d6c                a2dStartConvert
+ .text          0x00000dcc      0x3de rprintf.o
+                0x00001082                rprintf1RamRom
+                0x00000eb2                rprintfu08
+                0x00000edc                rprintfu32
+                0x00000dfa                rprintfStr
+                0x00000e18                rprintfStrLen
+                0x00000e74                rprintfProgStr
+                0x00000ec8                rprintfu16
+                0x00000dcc                rprintfInit
+                0x00000dd6                rprintfChar
+                0x00000e94                rprintfCRLF
+                0x00000e9c                rprintfu04
+                0x00000f02                rprintfNum
+ .text          0x000011aa        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+ .text          0x000011aa        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+ .text          0x000011aa        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+ .text          0x000011aa        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+ .text          0x000011aa        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text          0x000011aa        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text          0x000011aa        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x000011aa                . = ALIGN (0x2)
+ *(.text.*)
+ .text.libgcc   0x000011aa       0x3e c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+                0x000011aa                __mulsi3
+ .text.libgcc   0x000011e8       0x28 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                0x000011e8                __udivmodhi4
+ .text.libgcc   0x00001210       0x44 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                0x00001210                __udivmodsi4
+ .text.libgcc   0x00001254       0x36 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+                0x00001254                __divmodsi4
+ .text.libgcc   0x0000128a        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .text.libgcc   0x0000128a        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .text.libgcc   0x0000128a        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                0x0000128a                . = ALIGN (0x2)
+ *(.fini9)
+ .fini9         0x0000128a        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                0x0000128a                exit
+                0x0000128a                _exit
+ *(.fini9)
+ *(.fini8)
+ *(.fini8)
+ *(.fini7)
+ *(.fini7)
+ *(.fini6)
+ *(.fini6)
+ *(.fini5)
+ *(.fini5)
+ *(.fini4)
+ *(.fini4)
+ *(.fini3)
+ *(.fini3)
+ *(.fini2)
+ *(.fini2)
+ *(.fini1)
+ *(.fini1)
+ *(.fini0)
+ .fini0         0x0000128a        0x4 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ *(.fini0)
+                0x0000128e                _etext = .
+
+.data           0x00800060       0x2c load address 0x0000128e
+                0x00800060                PROVIDE (__data_start, .)
+ *(.data)
+ .data          0x00800060        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+ .data          0x00800060       0x2c main.o
+ .data          0x0080008c        0x0 uart.o
+ .data          0x0080008c        0x0 buffer.o
+ .data          0x0080008c        0x0 timer.o
+ .data          0x0080008c        0x0 a2d.o
+ .data          0x0080008c        0x0 rprintf.o
+ .data          0x0080008c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+ .data          0x0080008c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+ .data          0x0080008c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+ .data          0x0080008c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+ .data          0x0080008c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .data          0x0080008c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .data          0x0080008c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ *(.data*)
+ *(.rodata)
+ *(.rodata*)
+ *(.gnu.linkonce.d*)
+                0x0080008c                . = ALIGN (0x2)
+                0x0080008c                _edata = .
+                0x0080008c                PROVIDE (__data_end, .)
+
+.bss            0x0080008c       0xb5
+                0x0080008c                PROVIDE (__bss_start, .)
+ *(.bss)
+ .bss           0x0080008c        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+ .bss           0x0080008c        0x0 main.o
+ .bss           0x0080008c       0x82 uart.o
+ .bss           0x0080010e        0x0 buffer.o
+ .bss           0x0080010e       0x10 timer.o
+ .bss           0x0080011e        0x0 a2d.o
+ .bss           0x0080011e        0x2 rprintf.o
+ .bss           0x00800120        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+ .bss           0x00800120        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+ .bss           0x00800120        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+ .bss           0x00800120        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+ .bss           0x00800120        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+ .bss           0x00800120        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+ .bss           0x00800120        0x0 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+ *(.bss*)
+ *(COMMON)
+ COMMON         0x00800120       0x14 uart.o
+                0x00800120                uartReadyTx
+                0x00800121                uartRxBuffer
+                0x00800129                uartBufferedTx
+                0x0080012a                uartTxBuffer
+                0x00800132                uartRxOverflow
+ COMMON         0x00800134        0xc timer.o
+                0x00800134                Timer0Reg0
+                0x00800138                TimerPauseReg
+                0x0080013c                Timer2Reg0
+ COMMON         0x00800140        0x1 a2d.o
+                0x00800140                a2dCompleteFlag
+                0x00800141                PROVIDE (__bss_end, .)
+                0x0000128e                __data_load_start = LOADADDR (.data)
+                0x000012ba                __data_load_end = (__data_load_start + SIZEOF (.data))
+
+.noinit         0x00800141        0x0
+                0x00800141                PROVIDE (__noinit_start, .)
+ *(.noinit*)
+                0x00800141                PROVIDE (__noinit_end, .)
+                0x00800141                _end = .
+                0x00800141                PROVIDE (__heap_start, .)
+
+.eeprom         0x00810000        0x0
+ *(.eeprom*)
+                0x00810000                __eeprom_end = .
+
+.fuse
+ *(.fuse)
+ *(.lfuse)
+ *(.hfuse)
+ *(.efuse)
+
+.lock
+ *(.lock*)
+
+.signature
+ *(.signature*)
+
+.stab
+ *(.stab)
+
+.stabstr
+ *(.stabstr)
+
+.stab.excl
+ *(.stab.excl)
+
+.stab.exclstr
+ *(.stab.exclstr)
+
+.stab.index
+ *(.stab.index)
+
+.stab.indexstr
+ *(.stab.indexstr)
+
+.comment
+ *(.comment)
+
+.debug
+ *(.debug)
+
+.line
+ *(.line)
+
+.debug_srcinfo
+ *(.debug_srcinfo)
+
+.debug_sfnames
+ *(.debug_sfnames)
+
+.debug_aranges  0x00000000       0xc0
+ *(.debug_aranges)
+ .debug_aranges
+                0x00000000       0x20 main.o
+ .debug_aranges
+                0x00000020       0x20 uart.o
+ .debug_aranges
+                0x00000040       0x20 buffer.o
+ .debug_aranges
+                0x00000060       0x20 timer.o
+ .debug_aranges
+                0x00000080       0x20 a2d.o
+ .debug_aranges
+                0x000000a0       0x20 rprintf.o
+
+.debug_pubnames
+                0x00000000      0x7b2
+ *(.debug_pubnames)
+ .debug_pubnames
+                0x00000000       0xd9 main.o
+ .debug_pubnames
+                0x000000d9      0x194 uart.o
+ .debug_pubnames
+                0x0000026d       0x9c buffer.o
+ .debug_pubnames
+                0x00000309      0x301 timer.o
+ .debug_pubnames
+                0x0000060a       0xd4 a2d.o
+ .debug_pubnames
+                0x000006de       0xd4 rprintf.o
+
+.debug_info     0x00000000     0x1a9b
+ *(.debug_info)
+ .debug_info    0x00000000      0x58b main.o
+ .debug_info    0x0000058b      0x3ca uart.o
+ .debug_info    0x00000955      0x2cb buffer.o
+ .debug_info    0x00000c20      0x769 timer.o
+ .debug_info    0x00001389      0x21b a2d.o
+ .debug_info    0x000015a4      0x4f7 rprintf.o
+ *(.gnu.linkonce.wi.*)
+
+.debug_abbrev   0x00000000      0x975
+ *(.debug_abbrev)
+ .debug_abbrev  0x00000000      0x1a7 main.o
+ .debug_abbrev  0x000001a7      0x1ba uart.o
+ .debug_abbrev  0x00000361       0xec buffer.o
+ .debug_abbrev  0x0000044d      0x256 timer.o
+ .debug_abbrev  0x000006a3      0x12f a2d.o
+ .debug_abbrev  0x000007d2      0x1a3 rprintf.o
+
+.debug_line     0x00000000     0x1428
+ *(.debug_line)
+ .debug_line    0x00000000      0x470 main.o
+ .debug_line    0x00000470      0x2ae uart.o
+ .debug_line    0x0000071e      0x1de buffer.o
+ .debug_line    0x000008fc      0x5d1 timer.o
+ .debug_line    0x00000ecd      0x1ba a2d.o
+ .debug_line    0x00001087      0x3a1 rprintf.o
+
+.debug_frame    0x00000000      0x610
+ *(.debug_frame)
+ .debug_frame   0x00000000       0xd0 main.o
+ .debug_frame   0x000000d0      0x100 uart.o
+ .debug_frame   0x000001d0       0x80 buffer.o
+ .debug_frame   0x00000250      0x240 timer.o
+ .debug_frame   0x00000490       0xb0 a2d.o
+ .debug_frame   0x00000540       0xd0 rprintf.o
+
+.debug_str      0x00000000      0x8fd
+ *(.debug_str)
+ .debug_str     0x00000000      0x1a9 main.o
+                                0x1e9 (size before relaxing)
+ .debug_str     0x000001a9      0x1e1 uart.o
+                                0x27e (size before relaxing)
+ .debug_str     0x0000038a       0x9d buffer.o
+                                0x191 (size before relaxing)
+ .debug_str     0x00000427      0x2f7 timer.o
+                                0x39e (size before relaxing)
+ .debug_str     0x0000071e       0x9c a2d.o
+                                0x155 (size before relaxing)
+ .debug_str     0x000007ba      0x143 rprintf.o
+                                0x22f (size before relaxing)
+
+.debug_loc      0x00000000      0xcf3
+ *(.debug_loc)
+ .debug_loc     0x00000000      0x1d4 main.o
+ .debug_loc     0x000001d4       0xe1 uart.o
+ .debug_loc     0x000002b5      0x1a2 buffer.o
+ .debug_loc     0x00000457      0x196 timer.o
+ .debug_loc     0x000005ed       0x4c a2d.o
+ .debug_loc     0x00000639      0x6ba rprintf.o
+
+.debug_macinfo
+ *(.debug_macinfo)
+OUTPUT(main.elf elf32-avr)
+LOAD linker stubs
+
+.debug_ranges   0x00000000      0x150
+ .debug_ranges  0x00000000      0x150 main.o
+
+Cross Reference Table
+
+Symbol                                            File
+Check_IF_MrLCD_isBusy                             main.o
+LED_off                                           main.o
+LED_on                                            main.o
+Peek_A_Boo                                        main.o
+Send_A_Character                                  main.o
+Send_A_Command                                    main.o
+Send_A_String                                     main.o
+Timer0Reg0                                        timer.o
+Timer2Reg0                                        timer.o
+TimerPauseReg                                     timer.o
+TimerPrescaleFactor                               timer.o
+TimerRTCPrescaleFactor                            timer.o
+__bad_interrupt                                   c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__bss_end                                         c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+__bss_start                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+__data_end                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+__data_load_start                                 c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+__data_start                                      c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+__divmodsi4                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+                                                  timer.o
+__do_clear_bss                                    c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_clear_bss.o)
+                                                  rprintf.o
+                                                  a2d.o
+                                                  timer.o
+                                                  uart.o
+__do_copy_data                                    c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_copy_data.o)
+                                                  main.o
+__heap_end                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__init                                            c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__mulsi3                                          c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_mulsi3.o)
+                                                  timer.o
+__stack                                           c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__udivmodhi4                                      c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodhi4.o)
+                                                  rprintf.o
+                                                  buffer.o
+__udivmodsi4                                      c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_udivmodsi4.o)
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_divmodsi4.o)
+                                                  rprintf.o
+                                                  timer.o
+                                                  uart.o
+__vector_1                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_10                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_11                                       uart.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_12                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_13                                       uart.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_14                                       a2d.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_15                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_16                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_17                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_18                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_19                                       timer.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_2                                        c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_20                                       c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_3                                        timer.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_4                                        timer.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_5                                        timer.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_6                                        timer.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_7                                        timer.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_8                                        timer.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_9                                        timer.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vector_default                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+__vectors                                         c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+_exit                                             c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+a2dCompleteFlag                                   a2d.o
+a2dConvert10bit                                   a2d.o
+a2dConvert8bit                                    a2d.o
+a2dInit                                           a2d.o
+a2dIsComplete                                     a2d.o
+a2dOff                                            a2d.o
+a2dSetChannel                                     a2d.o
+a2dSetPrescaler                                   a2d.o
+a2dSetReference                                   a2d.o
+a2dStartConvert                                   a2d.o
+bufferAddToEnd                                    buffer.o
+                                                  uart.o
+bufferDumpFromFront                               buffer.o
+bufferFlush                                       buffer.o
+bufferGetAtIndex                                  buffer.o
+bufferGetFromFront                                buffer.o
+                                                  uart.o
+bufferInit                                        buffer.o
+                                                  uart.o
+bufferIsNotFull                                   buffer.o
+configure_ports                                   main.o
+delay_cycles                                      main.o
+delay_us                                          timer.o
+exit                                              c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/avr5\libgcc.a(_exit.o)
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+main                                              main.o
+                                                  c:/winavr-20100110/bin/../lib/gcc/avr/4.3.3/../../../../avr/lib/avr5/crtm16.o
+rprintf1RamRom                                    rprintf.o
+                                                  main.o
+rprintfCRLF                                       rprintf.o
+rprintfChar                                       rprintf.o
+rprintfInit                                       rprintf.o
+                                                  main.o
+rprintfNum                                        rprintf.o
+rprintfProgStr                                    rprintf.o
+rprintfStr                                        rprintf.o
+rprintfStrLen                                     rprintf.o
+rprintfu04                                        rprintf.o
+rprintfu08                                        rprintf.o
+rprintfu16                                        rprintf.o
+rprintfu32                                        rprintf.o
+servo_left                                        main.o
+servo_right                                       main.o
+timer0ClearOverflowCount                          timer.o
+timer0GetOverflowCount                            timer.o
+timer0GetPrescaler                                timer.o
+timer0Init                                        timer.o
+timer0SetPrescaler                                timer.o
+timer1GetPrescaler                                timer.o
+timer1Init                                        timer.o
+timer1PWMAOff                                     timer.o
+timer1PWMAOn                                      timer.o
+timer1PWMASet                                     timer.o
+timer1PWMBOff                                     timer.o
+timer1PWMBOn                                      timer.o
+timer1PWMBSet                                     timer.o
+timer1PWMInit                                     timer.o
+timer1PWMInitICR                                  timer.o
+timer1PWMOff                                      timer.o
+timer1SetPrescaler                                timer.o
+timer2ClearOverflowCount                          timer.o
+timer2GetOverflowCount                            timer.o
+timer2GetPrescaler                                timer.o
+timer2Init                                        timer.o
+timer2SetPrescaler                                timer.o
+timerAttach                                       timer.o
+timerDetach                                       timer.o
+timerInit                                         timer.o
+timerPause                                        timer.o
+uartAddToTxBuffer                                 uart.o
+uartBufferedTx                                    uart.o
+uartFlushReceiveBuffer                            uart.o
+uartGetByte                                       uart.o
+                                                  main.o
+uartGetRxBuffer                                   uart.o
+uartGetTxBuffer                                   uart.o
+uartInit                                          uart.o
+                                                  main.o
+uartInitBuffers                                   uart.o
+uartReadyTx                                       uart.o
+uartReceiveBufferIsEmpty                          uart.o
+uartReceiveByte                                   uart.o
+uartRxBuffer                                      uart.o
+uartRxOverflow                                    uart.o
+uartSendByte                                      uart.o
+                                                  main.o
+uartSendTxBuffer                                  uart.o
+uartSetBaudRate                                   uart.o
+                                                  main.o
+uartSetRxHandler                                  uart.o
+uartTxBuffer                                      uart.o

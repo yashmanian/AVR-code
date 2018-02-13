@@ -1,0 +1,13 @@
+Current revisions of supported products:
+
+AVR-ISP500-ISO		- ver. 1.05
+AVR-ISP500-MASS		- ver. 1.01
+AVR-ISP500-TINY		- ver. 1.07
+AVR-ISP500		- ver. 1.07
+MOD-RFID125		- ver. 1.04
+MOD-RFID125-BOX		- ver. 1.04
+MOD-RFID1356		- ver. 1.00
+MOD-RFID1356-BOX	- ver. 1.00
+
+last edit:
+20 September 2012

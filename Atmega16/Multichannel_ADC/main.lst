@@ -1,0 +1,208 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	__vector_14
+  18               	__vector_14:
+  19               	.LFB7:
+  20               	.LM1:
+  21 0000 1F92      		push __zero_reg__
+  22 0002 0F92      		push r0
+  23 0004 0FB6      		in r0,__SREG__
+  24 0006 0F92      		push r0
+  25 0008 1124      		clr __zero_reg__
+  26 000a 2F93      		push r18
+  27 000c 3F93      		push r19
+  28 000e 4F93      		push r20
+  29 0010 5F93      		push r21
+  30 0012 6F93      		push r22
+  31 0014 7F93      		push r23
+  32 0016 8F93      		push r24
+  33 0018 9F93      		push r25
+  34 001a AF93      		push r26
+  35 001c BF93      		push r27
+  36 001e CF93      		push r28
+  37 0020 DF93      		push r29
+  38 0022 EF93      		push r30
+  39 0024 FF93      		push r31
+  40               	/* prologue: Signal */
+  41               	/* frame size = 0 */
+  42               	.LM2:
+  43 0026 34B1      		in r19,36-32
+  44               	.LVL0:
+  45               	.LM3:
+  46 0028 25B1      		in r18,37-32
+  47 002a 922F      		mov r25,r18
+  48 002c 80E0      		ldi r24,lo8(0)
+  49 002e C32F      		mov r28,r19
+  50 0030 D0E0      		ldi r29,lo8(0)
+  51 0032 C82B      		or r28,r24
+  52 0034 D92B      		or r29,r25
+  53               	.LM4:
+  54 0036 87B1      		in r24,39-32
+  55 0038 803C      		cpi r24,lo8(-64)
+  56 003a 01F0      		breq .L3
+  57 003c 813C      		cpi r24,lo8(-63)
+  58 003e 01F4      		brne .L2
+  59               	.LM5:
+  60 0040 89E0      		ldi r24,lo8(9)
+  61 0042 61E0      		ldi r22,lo8(1)
+  62 0044 0E94 0000 		call LCDGotoXY
+  63               	.LVL1:
+  64 0048 CE01      		movw r24,r28
+  65 004a 64E0      		ldi r22,lo8(4)
+  66 004c 70E0      		ldi r23,hi8(4)
+  67 004e 0E94 0000 		call LCDWriteInt
+  68               	.LM6:
+  69 0052 80EC      		ldi r24,lo8(-64)
+  70 0054 87B9      		out 39-32,r24
+  71               	.LVL2:
+  72               	.L2:
+  73               	.LM7:
+  74 0056 369A      		sbi 38-32,6
+  75 0058 20E2      		ldi r18,lo8(800)
+  76 005a 33E0      		ldi r19,hi8(800)
+  77               	.LVL3:
+  78               	.LBB12:
+  79               	.LBB13:
+  80               	.LBB14:
+  81               	.LBB15:
+  82               	.LM8:
+  83 005c 40E9      		ldi r20,lo8(400)
+  84 005e 51E0      		ldi r21,hi8(400)
+  85               	.L5:
+  86 0060 CA01      		movw r24,r20
+  87               	.LVL4:
+  88               	/* #APP */
+  89               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  90 0062 0197      		1: sbiw r24,1
+  91 0064 01F4      		brne 1b
+  92               	 ;  0 "" 2
+  93               	/* #NOAPP */
+  94               	.LBE15:
+  95               	.LBE14:
+  96               	.LM9:
+  97 0066 2150      		subi r18,lo8(-(-1))
+  98 0068 3040      		sbci r19,hi8(-(-1))
+  99               	.LM10:
+ 100 006a 01F4      		brne .L5
+ 101               	/* epilogue start */
+ 102               	.LBE13:
+ 103               	.LBE12:
+ 104               	.LM11:
+ 105 006c FF91      		pop r31
+ 106 006e EF91      		pop r30
+ 107 0070 DF91      		pop r29
+ 108 0072 CF91      		pop r28
+ 109 0074 BF91      		pop r27
+ 110 0076 AF91      		pop r26
+ 111 0078 9F91      		pop r25
+ 112 007a 8F91      		pop r24
+ 113               	.LVL5:
+ 114 007c 7F91      		pop r23
+ 115 007e 6F91      		pop r22
+ 116 0080 5F91      		pop r21
+ 117 0082 4F91      		pop r20
+ 118 0084 3F91      		pop r19
+ 119               	.LVL6:
+ 120 0086 2F91      		pop r18
+ 121               	.LVL7:
+ 122 0088 0F90      		pop r0
+ 123 008a 0FBE      		out __SREG__,r0
+ 124 008c 0F90      		pop r0
+ 125 008e 1F90      		pop __zero_reg__
+ 126 0090 1895      		reti
+ 127               	.LVL8:
+ 128               	.L3:
+ 129               	.LM12:
+ 130 0092 89E0      		ldi r24,lo8(9)
+ 131 0094 60E0      		ldi r22,lo8(0)
+ 132 0096 0E94 0000 		call LCDGotoXY
+ 133               	.LVL9:
+ 134 009a CE01      		movw r24,r28
+ 135 009c 64E0      		ldi r22,lo8(4)
+ 136 009e 70E0      		ldi r23,hi8(4)
+ 137 00a0 0E94 0000 		call LCDWriteInt
+ 138               	.LM13:
+ 139 00a4 81EC      		ldi r24,lo8(-63)
+ 140 00a6 87B9      		out 39-32,r24
+ 141 00a8 00C0      		rjmp .L2
+ 142               	.LFE7:
+ 144               		.data
+ 145               	.LC0:
+ 146 0000 7365 6E73 		.string	"sensor1:"
+ 146      6F72 313A 
+ 146      00
+ 147               	.LC1:
+ 148 0009 7365 6E73 		.string	"sensor2:"
+ 148      6F72 323A 
+ 148      00
+ 149               		.text
+ 150               	.global	main
+ 152               	main:
+ 153               	.LFB6:
+ 154               	.LM14:
+ 155               	/* prologue: function */
+ 156               	/* frame size = 0 */
+ 157               	.LM15:
+ 158 00aa 82E0      		ldi r24,lo8(2)
+ 159 00ac 0E94 0000 		call LCDInit
+ 160               	.LM16:
+ 161 00b0 80E0      		ldi r24,lo8(0)
+ 162 00b2 60E0      		ldi r22,lo8(0)
+ 163 00b4 0E94 0000 		call LCDGotoXY
+ 164 00b8 80E0      		ldi r24,lo8(.LC0)
+ 165 00ba 90E0      		ldi r25,hi8(.LC0)
+ 166 00bc 0E94 0000 		call LCDWriteString
+ 167               	.LM17:
+ 168 00c0 80E0      		ldi r24,lo8(0)
+ 169 00c2 61E0      		ldi r22,lo8(1)
+ 170 00c4 0E94 0000 		call LCDGotoXY
+ 171 00c8 80E0      		ldi r24,lo8(.LC1)
+ 172 00ca 90E0      		ldi r25,hi8(.LC1)
+ 173 00cc 0E94 0000 		call LCDWriteString
+ 174               	.LM18:
+ 175 00d0 86B1      		in r24,38-32
+ 176 00d2 8760      		ori r24,lo8(7)
+ 177 00d4 86B9      		out 38-32,r24
+ 178               	.LM19:
+ 179 00d6 87B1      		in r24,39-32
+ 180 00d8 806C      		ori r24,lo8(-64)
+ 181 00da 87B9      		out 39-32,r24
+ 182               	.LM20:
+ 183 00dc 339A      		sbi 38-32,3
+ 184               	.LM21:
+ 185 00de 379A      		sbi 38-32,7
+ 186               	.LM22:
+ 187               	/* #APP */
+ 188               	 ;  18 "main.c" 1
+ 189 00e0 7894      		sei
+ 190               	 ;  0 "" 2
+ 191               	.LM23:
+ 192               	/* #NOAPP */
+ 193 00e2 369A      		sbi 38-32,6
+ 194               	.L10:
+ 195 00e4 00C0      		rjmp .L10
+ 196               	.LFE6:
+ 230               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\DOCUME~1\yash\LOCALS~1\Temp/ccVvLKTG.s:2      *ABS*:0000003f __SREG__
+C:\DOCUME~1\yash\LOCALS~1\Temp/ccVvLKTG.s:3      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\yash\LOCALS~1\Temp/ccVvLKTG.s:4      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\yash\LOCALS~1\Temp/ccVvLKTG.s:5      *ABS*:00000034 __CCP__
+C:\DOCUME~1\yash\LOCALS~1\Temp/ccVvLKTG.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\yash\LOCALS~1\Temp/ccVvLKTG.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\yash\LOCALS~1\Temp/ccVvLKTG.s:18     .text:00000000 __vector_14
+C:\DOCUME~1\yash\LOCALS~1\Temp/ccVvLKTG.s:152    .text:000000aa main
+
+UNDEFINED SYMBOLS
+LCDGotoXY
+LCDWriteInt
+LCDInit
+LCDWriteString
+__do_copy_data

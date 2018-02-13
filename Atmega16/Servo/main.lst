@@ -1,0 +1,112 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	main
+  18               	main:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 81B3      		in r24,49-32
+  25 0002 8FEF      		ldi r24,lo8(-1)
+  26 0004 81BB      		out 49-32,r24
+  27               	.LM3:
+  28 0006 8FB5      		in r24,79-32
+  29 0008 826C      		ori r24,lo8(-62)
+  30 000a 8FBD      		out 79-32,r24
+  31               	.LM4:
+  32 000c 8EB5      		in r24,78-32
+  33 000e 8961      		ori r24,lo8(25)
+  34 0010 8EBD      		out 78-32,r24
+  35               	.LM5:
+  36 0012 8FE1      		ldi r24,lo8(19999)
+  37 0014 9EE4      		ldi r25,hi8(19999)
+  38 0016 97BD      		out (70)+1-32,r25
+  39 0018 86BD      		out 70-32,r24
+  40 001a 40E0      		ldi r20,lo8(0)
+  41               	.LVL0:
+  42               	.LM6:
+  43 001c A8E1      		ldi r26,lo8(-1000)
+  44 001e BCEF      		ldi r27,hi8(-1000)
+  45               	.LBB12:
+  46               	.LBB13:
+  47               	.LBB14:
+  48               	.LBB15:
+  49               	.LM7:
+  50 0020 60E9      		ldi r22,lo8(400)
+  51 0022 71E0      		ldi r23,hi8(400)
+  52               	.LVL1:
+  53               	.L8:
+  54               	.LBE15:
+  55               	.LBE14:
+  56               	.LBE13:
+  57               	.LBE12:
+  58               	.LM8:
+  59 0024 26B5      		in r18,70-32
+  60 0026 37B5      		in r19,(70)+1-32
+  61 0028 842F      		mov r24,r20
+  62               	.LVL2:
+  63 002a 90E0      		ldi r25,lo8(0)
+  64 002c FC01      		movw r30,r24
+  65               	.LVL3:
+  66 002e EA9F      		mul r30,r26
+  67 0030 C001      		movw r24,r0
+  68 0032 EB9F      		mul r30,r27
+  69 0034 900D      		add r25,r0
+  70 0036 FA9F      		mul r31,r26
+  71 0038 900D      		add r25,r0
+  72 003a 1124      		clr r1
+  73 003c 820F      		add r24,r18
+  74 003e 931F      		adc r25,r19
+  75 0040 99BD      		out (72)+1-32,r25
+  76 0042 88BD      		out 72-32,r24
+  77 0044 88EE      		ldi r24,lo8(1000)
+  78 0046 93E0      		ldi r25,hi8(1000)
+  79               	.LVL4:
+  80               	.L2:
+  81               	.LBB19:
+  82               	.LBB18:
+  83               	.LBB17:
+  84               	.LBB16:
+  85               	.LM9:
+  86 0048 FB01      		movw r30,r22
+  87               	.LVL5:
+  88               	/* #APP */
+  89               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  90 004a 3197      		1: sbiw r30,1
+  91 004c 01F4      		brne 1b
+  92               	 ;  0 "" 2
+  93               	/* #NOAPP */
+  94               	.LBE16:
+  95               	.LBE17:
+  96               	.LM10:
+  97 004e 0197      		sbiw r24,1
+  98               	.LM11:
+  99 0050 01F4      		brne .L2
+ 100               	.LBE18:
+ 101               	.LBE19:
+ 102               	.LM12:
+ 103 0052 4F5F      		subi r20,lo8(-(1))
+ 104 0054 4331      		cpi r20,lo8(19)
+ 105 0056 00F0      		brlo .L8
+ 106 0058 40E0      		ldi r20,lo8(0)
+ 107 005a 00C0      		rjmp .L8
+ 108               	.LFE6:
+ 134               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\SONY\AppData\Local\Temp/ccoYhaZj.s:2      *ABS*:0000003f __SREG__
+C:\Users\SONY\AppData\Local\Temp/ccoYhaZj.s:3      *ABS*:0000003e __SP_H__
+C:\Users\SONY\AppData\Local\Temp/ccoYhaZj.s:4      *ABS*:0000003d __SP_L__
+C:\Users\SONY\AppData\Local\Temp/ccoYhaZj.s:5      *ABS*:00000034 __CCP__
+C:\Users\SONY\AppData\Local\Temp/ccoYhaZj.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\SONY\AppData\Local\Temp/ccoYhaZj.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\SONY\AppData\Local\Temp/ccoYhaZj.s:18     .text:00000000 main
+
+NO UNDEFINED SYMBOLS

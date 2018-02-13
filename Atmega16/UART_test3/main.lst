@@ -1,0 +1,147 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	USARTInit
+  18               	USARTInit:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	.LVL0:
+  22               	/* prologue: function */
+  23               	/* frame size = 0 */
+  24               	.LM2:
+  25 0000 89B9      		out 41-32,r24
+  26               	.LM3:
+  27 0002 90BD      		out 64-32,r25
+  28               	.LVL1:
+  29               	.LM4:
+  30 0004 86E8      		ldi r24,lo8(-122)
+  31               	.LVL2:
+  32 0006 80BD      		out 64-32,r24
+  33               	.LM5:
+  34 0008 88E9      		ldi r24,lo8(-104)
+  35 000a 8AB9      		out 42-32,r24
+  36               	/* epilogue start */
+  37               	.LM6:
+  38 000c 0895      		ret
+  39               	.LFE6:
+  41               	.global	USARTReadChar
+  43               	USARTReadChar:
+  44               	.LFB7:
+  45               	.LM7:
+  46               	/* prologue: function */
+  47               	/* frame size = 0 */
+  48               	.L4:
+  49               	.LM8:
+  50 000e 5F9B      		sbis 43-32,7
+  51 0010 00C0      		rjmp .L4
+  52               	.LM9:
+  53 0012 8CB1      		in r24,44-32
+  54               	/* epilogue start */
+  55               	.LM10:
+  56 0014 0895      		ret
+  57               	.LFE7:
+  59               	.global	USARTWriteChar
+  61               	USARTWriteChar:
+  62               	.LFB8:
+  63               	.LM11:
+  64               	/* prologue: function */
+  65               	/* frame size = 0 */
+  66               	.LVL3:
+  67               	.L8:
+  68               	.LM12:
+  69 0016 5D9B      		sbis 43-32,5
+  70 0018 00C0      		rjmp .L8
+  71               	.LM13:
+  72 001a 8CB9      		out 44-32,r24
+  73               	/* epilogue start */
+  74               	.LM14:
+  75 001c 0895      		ret
+  76               	.LFE8:
+  78               	.global	main
+  80               	main:
+  81               	.LFB9:
+  82               	.LM15:
+  83               	/* prologue: function */
+  84               	/* frame size = 0 */
+  85               	.LM16:
+  86 001e 8E9A      		sbi 49-32,6
+  87               	.LBB8:
+  88               	.LBB9:
+  89               	.LM17:
+  90 0020 83E3      		ldi r24,lo8(51)
+  91 0022 89B9      		out 41-32,r24
+  92               	.LM18:
+  93 0024 10BC      		out 64-32,__zero_reg__
+  94               	.LM19:
+  95 0026 86E8      		ldi r24,lo8(-122)
+  96 0028 80BD      		out 64-32,r24
+  97               	.LM20:
+  98 002a 88E9      		ldi r24,lo8(-104)
+  99 002c 8AB9      		out 42-32,r24
+ 100               	.L12:
+ 101 002e 00C0      		rjmp .L12
+ 102               	.LBE9:
+ 103               	.LBE8:
+ 104               	.LFE9:
+ 106               	.global	ISR
+ 108               	ISR:
+ 109               	.LFB10:
+ 110               	.LM21:
+ 111               	/* prologue: function */
+ 112               	/* frame size = 0 */
+ 113               	.LVL4:
+ 114               	.L15:
+ 115               	.LBB10:
+ 116               	.LBB11:
+ 117               	.LM22:
+ 118 0030 5F9B      		sbis 43-32,7
+ 119 0032 00C0      		rjmp .L15
+ 120               	.LM23:
+ 121 0034 8CB1      		in r24,44-32
+ 122               	.LVL5:
+ 123               	.L16:
+ 124               	.LBE11:
+ 125               	.LBE10:
+ 126               	.LBB12:
+ 127               	.LBB13:
+ 128               	.LM24:
+ 129 0036 5D9B      		sbis 43-32,5
+ 130 0038 00C0      		rjmp .L16
+ 131               	.LM25:
+ 132 003a 8CB9      		out 44-32,r24
+ 133               	.LBE13:
+ 134               	.LBE12:
+ 135               	.LM26:
+ 136 003c 8136      		cpi r24,lo8(97)
+ 137 003e 01F4      		brne .L17
+ 138               	.LM27:
+ 139 0040 969A      		sbi 50-32,6
+ 140 0042 0895      		ret
+ 141               	.L17:
+ 142               	.LM28:
+ 143 0044 9698      		cbi 50-32,6
+ 144               	.LVL6:
+ 145               	.LM29:
+ 146 0046 0895      		ret
+ 147               	.LFE10:
+ 205               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\YASHMA~1\AppData\Local\Temp/cciopJdK.s:2      *ABS*:0000003f __SREG__
+C:\Users\YASHMA~1\AppData\Local\Temp/cciopJdK.s:3      *ABS*:0000003e __SP_H__
+C:\Users\YASHMA~1\AppData\Local\Temp/cciopJdK.s:4      *ABS*:0000003d __SP_L__
+C:\Users\YASHMA~1\AppData\Local\Temp/cciopJdK.s:5      *ABS*:00000034 __CCP__
+C:\Users\YASHMA~1\AppData\Local\Temp/cciopJdK.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\YASHMA~1\AppData\Local\Temp/cciopJdK.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\YASHMA~1\AppData\Local\Temp/cciopJdK.s:18     .text:00000000 USARTInit
+C:\Users\YASHMA~1\AppData\Local\Temp/cciopJdK.s:43     .text:0000000e USARTReadChar
+C:\Users\YASHMA~1\AppData\Local\Temp/cciopJdK.s:61     .text:00000016 USARTWriteChar
+C:\Users\YASHMA~1\AppData\Local\Temp/cciopJdK.s:80     .text:0000001e main
+C:\Users\YASHMA~1\AppData\Local\Temp/cciopJdK.s:108    .text:00000030 ISR
+
+NO UNDEFINED SYMBOLS

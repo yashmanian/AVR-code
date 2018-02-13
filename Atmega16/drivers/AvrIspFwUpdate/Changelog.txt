@@ -1,0 +1,109 @@
+2012-09-20 Stanimir Petev <support -at - olimex.com>
+
+	* avr-isp500-iso 1.0.5, avr-isp500-tiny 1.0.7 - fixed the problem in 
+	stand-alone mode, which occured when trying to program both flash and
+	eeprom
+	* avr-isp500, avr-isp500-iso, avr-isp500-tiny - fixed a problem causing
+	a delay in programming if using hex files with little meaningful bits
+
+2010-04-22  Aleksandar Mitev  <shondll -at- yahoo.com> 
+	
+	* AvrIspFwUpdate: Version 1.0.0.10.
+	* mod-rfid1356-box - initial release version 0x0100
+	* mod-rfid1356-stick - initial release version 0x0100
+
+2009-11-14  Olimex Team  <support -at- olimex.com> 
+	
+	* AvrIspFwUpdate: Version 1.0.0.9.
+	* mod-rfid125: Fixed minor regression that prevented some transponders
+	  to be read.	
+
+2009-09-03  Dimitar Dimitrov  <dimitar -at- olimex.com> 
+	
+	* AvrIspFwUpdate: Version 1.0.0.8.
+	* avr-isp500-*: Fixed autonomous programming. Avr Studio 4.17 
+	  introduced a minor protocol behaviour change when using the "Auto" 
+	  tab from the STK500 programming dialog. This caused AVR-ISP500
+	  programmers to fail with "Miscellaneous Error" during session 
+	  playback in autonomous mode. Bumped firmware release to version 0105.	
+
+2009-06-23  Dimitar Dimitrov  <dimitar -at- olimex.com> 
+	
+	* AvrIspFwUpdate: Version 1.0.0.7.
+	* mod-rfid125: Reversed the bit order in Tag ID bytes. Now the printed 
+	  serial number on most RFID tags matches directly the output of
+	  MOD-RFID125. The output bytes from old firmware are essentially the 
+	  same, they just have to be mirrored externally, e.g. by PC 
+	  application which swaps bits 0<->7, 1<->6, 2<->5, 3<->4.
+	  Bumped release to version 0102.	
+
+2009-06-03  Dimitar Dimitrov  <dimitar -at- olimex.com> 
+	
+	* AvrIspFwUpdate: Version 1.0.0.6.
+	* avr-isp500-mass: Fixed autonomous programming when no USB
+	connection is present. Bumped release to version 0102.	
+
+2009-02-02  Dimitar Dimitrov  <dimitar -at- olimex.com> 
+
+	* AvrIspFwUpdate: Version 1.0.0.5.
+	* avr-isp500, avr-isp500-tiny: Firmware release 01.04 . Fixed a
+	problem with USB CDC descriptors.
+	* mod-rfid125: Firmware release 01.01 . Fixed a problem with USB 
+	CDC descriptors.	
+
+2008-11-19  Dimitar Dimitrov  <dimitar -at- olimex.com> 
+
+	* AvrIspFwUpdate: Version 1.0.0.4.
+	* avr-isp500-iso: Firmware release 01.02. Fixed OSCCAL.
+	* avr-isp500-mass: Firmware release 01.01 .
+	* avr-isp500, avr-isp500-tiny: Firmware release 01.03 . Fixed a
+	USB OUT ZLP issue that was exposed by the new usbser.sys in 
+	Windows XP SP3.	
+
+2008-09-09  Dimitar Dimitrov  <dimitar -at- olimex.com> 
+
+	* AvrIspFwUpdate: Version 1.0.0.3.
+	* avr-isp500-iso: Firmware release 01.00 .
+	* avr-isp500-mass: Firmware release 01.01 .
+	* avr-isp500, avr-isp500-tiny: Firmware release 01.02 . Fixed the
+	oscillator calibration routine (Atmel application note AVR053).
+	
+2008-04-25  Dimitar Dimitrov  <dimitar -at- olimex.com> 
+
+	* AvrIspFwUpdate: Version 1.0.0.2.
+	* avr-isp500-iso: Firmware release 01.00 .
+	* avr-isp500-tiny: Firmware release 01.00 .
+	* avr-isp500-mass: Firmware release 01.00 .
+	* avr-isp500: Firmware release 01.01 .
+
+2008-04-20  Dimitar Dimitrov  <dimitar -at- olimex.com> 
+
+	* AvrIspFwUpdate: Version 1.0.0.0.
+	* avr-isp500-iso: Firmware release 01.00 .
+	* avr-isp500-tiny: Firmware release 01.00 .
+	* avr-isp500-mass: Firmware release 01.00 .
+	* avr-isp500: Firmware release 01.00 .
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

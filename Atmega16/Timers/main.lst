@@ -1,0 +1,52 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	main
+  18               	main:
+  19               	.LFB2:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 8E9A      		sbi 49-32,6
+  25               	.LM3:
+  26 0002 9698      		cbi 50-32,6
+  27               	.LM4:
+  28 0004 8EB5      		in r24,78-32
+  29 0006 8560      		ori r24,lo8(5)
+  30 0008 8EBD      		out 78-32,r24
+  31               	.LM5:
+  32 000a 20E4      		ldi r18,lo8(64)
+  33               	.L6:
+  34               	.LM6:
+  35 000c 8CB5      		in r24,76-32
+  36 000e 9DB5      		in r25,(76)+1-32
+  37 0010 8A50      		subi r24,lo8(15626)
+  38 0012 9D43      		sbci r25,hi8(15626)
+  39 0014 00F0      		brlo .L6
+  40               	.LM7:
+  41 0016 1DBC      		out (76)+1-32,__zero_reg__
+  42 0018 1CBC      		out 76-32,__zero_reg__
+  43               	.LM8:
+  44 001a 82B3      		in r24,50-32
+  45 001c 8227      		eor r24,r18
+  46 001e 82BB      		out 50-32,r24
+  47 0020 00C0      		rjmp .L6
+  48               	.LFE2:
+  74               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+E:\DOCUME~1\YASHMA~1\LOCALS~1\Temp/ccOWi3Ic.s:2      *ABS*:0000003f __SREG__
+E:\DOCUME~1\YASHMA~1\LOCALS~1\Temp/ccOWi3Ic.s:3      *ABS*:0000003e __SP_H__
+E:\DOCUME~1\YASHMA~1\LOCALS~1\Temp/ccOWi3Ic.s:4      *ABS*:0000003d __SP_L__
+E:\DOCUME~1\YASHMA~1\LOCALS~1\Temp/ccOWi3Ic.s:5      *ABS*:00000034 __CCP__
+E:\DOCUME~1\YASHMA~1\LOCALS~1\Temp/ccOWi3Ic.s:6      *ABS*:00000000 __tmp_reg__
+E:\DOCUME~1\YASHMA~1\LOCALS~1\Temp/ccOWi3Ic.s:7      *ABS*:00000001 __zero_reg__
+E:\DOCUME~1\YASHMA~1\LOCALS~1\Temp/ccOWi3Ic.s:18     .text:00000000 main
+
+NO UNDEFINED SYMBOLS

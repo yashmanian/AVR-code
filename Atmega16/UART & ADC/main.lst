@@ -1,0 +1,204 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	configure_ports
+  18               	configure_ports:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 14BA      		out 52-32,__zero_reg__
+  25               	.LM3:
+  26 0002 15BA      		out 53-32,__zero_reg__
+  27               	.LM4:
+  28 0004 8FEF      		ldi r24,lo8(-1)
+  29 0006 81BB      		out 49-32,r24
+  30               	.LM5:
+  31 0008 87EC      		ldi r24,lo8(-57)
+  32 000a 87BB      		out 55-32,r24
+  33               	/* epilogue start */
+  34               	.LM6:
+  35 000c 0895      		ret
+  36               	.LFE6:
+  38               	.global	delay_cycles
+  40               	delay_cycles:
+  41               	.LFB7:
+  42               	.LM7:
+  43               	.LVL0:
+  44               	/* prologue: function */
+  45               	/* frame size = 0 */
+  46               	/* epilogue start */
+  47               	.LM8:
+  48 000e 0895      		ret
+  49               	.LFE7:
+  51               	.global	LED_on
+  53               	LED_on:
+  54               	.LFB8:
+  55               	.LM9:
+  56               	/* prologue: function */
+  57               	/* frame size = 0 */
+  58               	.LM10:
+  59 0010 9498      		cbi 50-32,4
+  60               	/* epilogue start */
+  61               	.LM11:
+  62 0012 0895      		ret
+  63               	.LFE8:
+  65               	.global	LED_off
+  67               	LED_off:
+  68               	.LFB9:
+  69               	.LM12:
+  70               	/* prologue: function */
+  71               	/* frame size = 0 */
+  72               	.LM13:
+  73 0014 949A      		sbi 50-32,4
+  74               	/* epilogue start */
+  75               	.LM14:
+  76 0016 0895      		ret
+  77               	.LFE9:
+  79               	.global	servo_left
+  81               	servo_left:
+  82               	.LFB10:
+  83               	.LM15:
+  84               	.LVL1:
+  85               	/* prologue: function */
+  86               	/* frame size = 0 */
+  87               	.LM16:
+  88 0018 929A      		sbi 50-32,2
+  89               	.LM17:
+  90 001a 9298      		cbi 50-32,2
+  91               	/* epilogue start */
+  92               	.LM18:
+  93 001c 0895      		ret
+  94               	.LFE10:
+  96               	.global	servo_right
+  98               	servo_right:
+  99               	.LFB11:
+ 100               	.LM19:
+ 101               	.LVL2:
+ 102               	/* prologue: function */
+ 103               	/* frame size = 0 */
+ 104               	.LM20:
+ 105 001e 939A      		sbi 50-32,3
+ 106               	.LM21:
+ 107 0020 9398      		cbi 50-32,3
+ 108               	/* epilogue start */
+ 109               	.LM22:
+ 110 0022 0895      		ret
+ 111               	.LFE11:
+ 113               	.global	main
+ 115               	main:
+ 116               	.LFB12:
+ 117               	.LM23:
+ 118 0024 CF93      		push r28
+ 119 0026 DF93      		push r29
+ 120               	/* prologue: function */
+ 121               	/* frame size = 0 */
+ 122               	.LM24:
+ 123 0028 0E94 0000 		call uartInit
+ 124               	.LM25:
+ 125 002c 60E8      		ldi r22,lo8(9600)
+ 126 002e 75E2      		ldi r23,hi8(9600)
+ 127 0030 80E0      		ldi r24,hlo8(9600)
+ 128 0032 90E0      		ldi r25,hhi8(9600)
+ 129 0034 0E94 0000 		call uartSetBaudRate
+ 130               	.LM26:
+ 131 0038 80E0      		ldi r24,lo8(gs(uartSendByte))
+ 132 003a 90E0      		ldi r25,hi8(gs(uartSendByte))
+ 133 003c 0E94 0000 		call rprintfInit
+ 134               	.LBB15:
+ 135               	.LBB16:
+ 136               	.LM27:
+ 137 0040 14BA      		out 52-32,__zero_reg__
+ 138               	.LM28:
+ 139 0042 15BA      		out 53-32,__zero_reg__
+ 140               	.LM29:
+ 141 0044 8FEF      		ldi r24,lo8(-1)
+ 142 0046 81BB      		out 49-32,r24
+ 143               	.LM30:
+ 144 0048 87EC      		ldi r24,lo8(-57)
+ 145 004a 87BB      		out 55-32,r24
+ 146               	.LBE16:
+ 147               	.LBE15:
+ 148               	.LM31:
+ 149 004c 0E94 0000 		call a2dInit
+ 150               	.LM32:
+ 151 0050 87E0      		ldi r24,lo8(7)
+ 152 0052 0E94 0000 		call a2dSetPrescaler
+ 153               	.LM33:
+ 154 0056 81E0      		ldi r24,lo8(1)
+ 155 0058 0E94 0000 		call a2dSetReference
+ 156               	.LBB17:
+ 157               	.LBB18:
+ 158               	.LM34:
+ 159 005c 9498      		cbi 50-32,4
+ 160               	.LBE18:
+ 161               	.LBE17:
+ 162               	.LM35:
+ 163 005e C0E0      		ldi r28,lo8(__c.1525)
+ 164 0060 D0E0      		ldi r29,hi8(__c.1525)
+ 165               	.L14:
+ 166               	.LM36:
+ 167 0062 81E0      		ldi r24,lo8(1)
+ 168 0064 0E94 0000 		call a2dConvert10bit
+ 169               	.LM37:
+ 170 0068 00D0      		rcall .
+ 171 006a 00D0      		rcall .
+ 172 006c 0F92      		push __tmp_reg__
+ 173 006e EDB7      		in r30,__SP_L__
+ 174 0070 FEB7      		in r31,__SP_H__
+ 175 0072 3196      		adiw r30,1
+ 176 0074 21E0      		ldi r18,lo8(1)
+ 177 0076 ADB7      		in r26,__SP_L__
+ 178 0078 BEB7      		in r27,__SP_H__
+ 179 007a 1196      		adiw r26,1
+ 180 007c 2C93      		st X,r18
+ 181 007e D283      		std Z+2,r29
+ 182 0080 C183      		std Z+1,r28
+ 183 0082 9483      		std Z+4,r25
+ 184 0084 8383      		std Z+3,r24
+ 185 0086 0E94 0000 		call rprintf1RamRom
+ 186 008a 0F90      		pop __tmp_reg__
+ 187 008c 0F90      		pop __tmp_reg__
+ 188 008e 0F90      		pop __tmp_reg__
+ 189 0090 0F90      		pop __tmp_reg__
+ 190 0092 0F90      		pop __tmp_reg__
+ 191 0094 00C0      		rjmp .L14
+ 192               	.LFE12:
+ 194               		.section	.progmem.data,"a",@progbits
+ 197               	__c.1525:
+ 198 0000 2564 0A0D 		.string	"%d\n\r"
+ 198      00
+ 271               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\SONY\AppData\Local\Temp/ccGINP2R.s:2      *ABS*:0000003f __SREG__
+C:\Users\SONY\AppData\Local\Temp/ccGINP2R.s:3      *ABS*:0000003e __SP_H__
+C:\Users\SONY\AppData\Local\Temp/ccGINP2R.s:4      *ABS*:0000003d __SP_L__
+C:\Users\SONY\AppData\Local\Temp/ccGINP2R.s:5      *ABS*:00000034 __CCP__
+C:\Users\SONY\AppData\Local\Temp/ccGINP2R.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\SONY\AppData\Local\Temp/ccGINP2R.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\SONY\AppData\Local\Temp/ccGINP2R.s:18     .text:00000000 configure_ports
+C:\Users\SONY\AppData\Local\Temp/ccGINP2R.s:40     .text:0000000e delay_cycles
+C:\Users\SONY\AppData\Local\Temp/ccGINP2R.s:53     .text:00000010 LED_on
+C:\Users\SONY\AppData\Local\Temp/ccGINP2R.s:67     .text:00000014 LED_off
+C:\Users\SONY\AppData\Local\Temp/ccGINP2R.s:81     .text:00000018 servo_left
+C:\Users\SONY\AppData\Local\Temp/ccGINP2R.s:98     .text:0000001e servo_right
+C:\Users\SONY\AppData\Local\Temp/ccGINP2R.s:115    .text:00000024 main
+C:\Users\SONY\AppData\Local\Temp/ccGINP2R.s:197    .progmem.data:00000000 __c.1525
+
+UNDEFINED SYMBOLS
+uartInit
+uartSetBaudRate
+uartSendByte
+rprintfInit
+a2dInit
+a2dSetPrescaler
+a2dSetReference
+a2dConvert10bit
+rprintf1RamRom

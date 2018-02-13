@@ -1,0 +1,64 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	main
+  18               	main:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 BB9A      		sbi 55-32,3
+  25               	.LM3:
+  26 0002 28E0      		ldi r18,lo8(8)
+  27               	.LBB24:
+  28               	.LBB25:
+  29               	.LBB26:
+  30               	.LBB27:
+  31               	.LM4:
+  32 0004 9AE2      		ldi r25,lo8(42)
+  33               	.L2:
+  34               	.LBE27:
+  35               	.LBE26:
+  36               	.LBE25:
+  37               	.LBE24:
+  38               	.LM5:
+  39 0006 88B3      		in r24,56-32
+  40 0008 8227      		eor r24,r18
+  41 000a 88BB      		out 56-32,r24
+  42               	.LBB31:
+  43               	.LBB30:
+  44               	.LBB29:
+  45               	.LBB28:
+  46               	.LM6:
+  47 000c 892F      		mov r24,r25
+  48               	.LVL0:
+  49               	/* #APP */
+  50               	 ;  83 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  51 000e 8A95      		1: dec r24
+  52 0010 01F4      		brne 1b
+  53               	 ;  0 "" 2
+  54               	/* #NOAPP */
+  55 0012 00C0      		rjmp .L2
+  56               	.LBE28:
+  57               	.LBE29:
+  58               	.LBE30:
+  59               	.LBE31:
+  60               	.LFE6:
+  86               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\Ninad\AppData\Local\Temp/ccbrkB6a.s:2      *ABS*:0000003f __SREG__
+C:\Users\Ninad\AppData\Local\Temp/ccbrkB6a.s:3      *ABS*:0000003e __SP_H__
+C:\Users\Ninad\AppData\Local\Temp/ccbrkB6a.s:4      *ABS*:0000003d __SP_L__
+C:\Users\Ninad\AppData\Local\Temp/ccbrkB6a.s:5      *ABS*:00000034 __CCP__
+C:\Users\Ninad\AppData\Local\Temp/ccbrkB6a.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\Ninad\AppData\Local\Temp/ccbrkB6a.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\Ninad\AppData\Local\Temp/ccbrkB6a.s:18     .text:00000000 main
+
+NO UNDEFINED SYMBOLS

@@ -1,0 +1,465 @@
+
+LCD_3.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         0000023a  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000020  00800060  0000023a  000002ae  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .comment      00000030  00000000  00000000  000002ce  2**0
+                  CONTENTS, READONLY
+  3 .debug_aranges 00000048  00000000  00000000  000002fe  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   000006ec  00000000  00000000  00000346  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 000001ad  00000000  00000000  00000a32  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   0000023c  00000000  00000000  00000bdf  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  000000a0  00000000  00000000  00000e1c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    00000216  00000000  00000000  00000ebc  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    0000019b  00000000  00000000  000010d2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000038  00000000  00000000  0000126d  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   8:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+   c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  10:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  14:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  18:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  1c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  20:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  24:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  28:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  2c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  30:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  34:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  38:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  3c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  40:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  44:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  48:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  4c:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+  50:	0c 94 3f 00 	jmp	0x7e	; 0x7e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	ea e3       	ldi	r30, 0x3A	; 58
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 38       	cpi	r26, 0x80	; 128
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+  76:	0e 94 01 01 	call	0x202	; 0x202 <main>
+  7a:	0c 94 1b 01 	jmp	0x236	; 0x236 <_exit>
+
+0000007e <__bad_interrupt>:
+  7e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000082 <lcd_write_4>:
+  Exit:     no parameters
+  Notes:    use either time delays or the busy flag
+*/
+void lcd_write_4(uint8_t theByte)
+{
+    lcd_D7_port &= ~(1<<lcd_D7_bit);                        // assume that data is '0'
+  82:	96 98       	cbi	0x12, 6	; 18
+    if (theByte & 1<<7) lcd_D7_port |= (1<<lcd_D7_bit);     // make data = '1' if necessary
+  84:	88 23       	and	r24, r24
+  86:	0c f4       	brge	.+2      	; 0x8a <lcd_write_4+0x8>
+  88:	96 9a       	sbi	0x12, 6	; 18
+
+    lcd_D6_port &= ~(1<<lcd_D6_bit);                        // repeat for each data bit
+  8a:	95 98       	cbi	0x12, 5	; 18
+    if (theByte & 1<<6) lcd_D6_port |= (1<<lcd_D6_bit);
+  8c:	86 fd       	sbrc	r24, 6
+  8e:	95 9a       	sbi	0x12, 5	; 18
+
+    lcd_D5_port &= ~(1<<lcd_D5_bit);
+  90:	94 98       	cbi	0x12, 4	; 18
+    if (theByte & 1<<5) lcd_D5_port |= (1<<lcd_D5_bit);
+  92:	85 fd       	sbrc	r24, 5
+  94:	94 9a       	sbi	0x12, 4	; 18
+
+    lcd_D4_port &= ~(1<<lcd_D4_bit);
+  96:	93 98       	cbi	0x12, 3	; 18
+    if (theByte & 1<<4) lcd_D4_port |= (1<<lcd_D4_bit);
+  98:	84 fd       	sbrc	r24, 4
+  9a:	93 9a       	sbi	0x12, 3	; 18
+
+// write the data
+                                                    // 'Address set-up time' (40 nS)
+    lcd_E_port |= (1<<lcd_E_bit);                   // Enable pin high
+  9c:	c1 9a       	sbi	0x18, 1	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  9e:	85 e0       	ldi	r24, 0x05	; 5
+  a0:	8a 95       	dec	r24
+  a2:	f1 f7       	brne	.-4      	; 0xa0 <lcd_write_4+0x1e>
+  a4:	00 00       	nop
+    _delay_us(1);                                   // implement 'Data set-up time' (80 nS) and 'Enable pulse width' (230 nS)
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // Enable pin low
+  a6:	c1 98       	cbi	0x18, 1	; 24
+  a8:	85 e0       	ldi	r24, 0x05	; 5
+  aa:	8a 95       	dec	r24
+  ac:	f1 f7       	brne	.-4      	; 0xaa <lcd_write_4+0x28>
+  ae:	00 00       	nop
+  b0:	08 95       	ret
+
+000000b2 <lcd_write_character_4d>:
+  Exit:     no parameters
+  Notes:    does not deal with RW (busy flag is not implemented)
+*/
+
+void lcd_write_character_4d(uint8_t theData)
+{
+  b2:	cf 93       	push	r28
+  b4:	c8 2f       	mov	r28, r24
+    lcd_RS_port |= (1<<lcd_RS_bit);                 // select the Data Register (RS high)
+  b6:	c0 9a       	sbi	0x18, 0	; 24
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+  b8:	c1 98       	cbi	0x18, 1	; 24
+    lcd_write_4(theData);                           // write the upper 4-bits of the data
+  ba:	0e 94 41 00 	call	0x82	; 0x82 <lcd_write_4>
+    lcd_write_4(theData << 4);                      // write the lower 4-bits of the data
+  be:	8c 2f       	mov	r24, r28
+  c0:	82 95       	swap	r24
+  c2:	80 7f       	andi	r24, 0xF0	; 240
+  c4:	0e 94 41 00 	call	0x82	; 0x82 <lcd_write_4>
+}
+  c8:	cf 91       	pop	r28
+  ca:	08 95       	ret
+
+000000cc <lcd_write_string_4d>:
+  Entry:    (theString) is the string to be displayed
+  Exit:     no parameters
+  Notes:    uses time delays rather than checking the busy flag
+*/
+void lcd_write_string_4d(uint8_t theString[])
+{
+  cc:	0f 93       	push	r16
+  ce:	1f 93       	push	r17
+  d0:	cf 93       	push	r28
+  d2:	df 93       	push	r29
+  d4:	00 d0       	rcall	.+0      	; 0xd6 <lcd_write_string_4d+0xa>
+  d6:	cd b7       	in	r28, 0x3d	; 61
+  d8:	de b7       	in	r29, 0x3e	; 62
+  da:	8c 01       	movw	r16, r24
+    volatile int i = 0;                             // character counter*/
+  dc:	1a 82       	std	Y+2, r1	; 0x02
+  de:	19 82       	std	Y+1, r1	; 0x01
+    while (theString[i] != 0)
+  e0:	e9 81       	ldd	r30, Y+1	; 0x01
+  e2:	fa 81       	ldd	r31, Y+2	; 0x02
+  e4:	e8 0f       	add	r30, r24
+  e6:	f9 1f       	adc	r31, r25
+  e8:	80 81       	ld	r24, Z
+  ea:	88 23       	and	r24, r24
+  ec:	c9 f0       	breq	.+50     	; 0x120 <lcd_write_string_4d+0x54>
+    {
+        lcd_write_character_4d(theString[i]);
+  ee:	e9 81       	ldd	r30, Y+1	; 0x01
+  f0:	fa 81       	ldd	r31, Y+2	; 0x02
+  f2:	e0 0f       	add	r30, r16
+  f4:	f1 1f       	adc	r31, r17
+  f6:	80 81       	ld	r24, Z
+  f8:	0e 94 59 00 	call	0xb2	; 0xb2 <lcd_write_character_4d>
+        i++;
+  fc:	89 81       	ldd	r24, Y+1	; 0x01
+  fe:	9a 81       	ldd	r25, Y+2	; 0x02
+ 100:	01 96       	adiw	r24, 0x01	; 1
+ 102:	9a 83       	std	Y+2, r25	; 0x02
+ 104:	89 83       	std	Y+1, r24	; 0x01
+ 106:	8f e3       	ldi	r24, 0x3F	; 63
+ 108:	91 e0       	ldi	r25, 0x01	; 1
+ 10a:	01 97       	sbiw	r24, 0x01	; 1
+ 10c:	f1 f7       	brne	.-4      	; 0x10a <lcd_write_string_4d+0x3e>
+ 10e:	00 c0       	rjmp	.+0      	; 0x110 <lcd_write_string_4d+0x44>
+ 110:	00 00       	nop
+  Notes:    uses time delays rather than checking the busy flag
+*/
+void lcd_write_string_4d(uint8_t theString[])
+{
+    volatile int i = 0;                             // character counter*/
+    while (theString[i] != 0)
+ 112:	e9 81       	ldd	r30, Y+1	; 0x01
+ 114:	fa 81       	ldd	r31, Y+2	; 0x02
+ 116:	e0 0f       	add	r30, r16
+ 118:	f1 1f       	adc	r31, r17
+ 11a:	80 81       	ld	r24, Z
+ 11c:	81 11       	cpse	r24, r1
+ 11e:	e7 cf       	rjmp	.-50     	; 0xee <lcd_write_string_4d+0x22>
+    {
+        lcd_write_character_4d(theString[i]);
+        i++;
+        _delay_us(80);                              // 40 uS delay (min)
+    }
+}
+ 120:	0f 90       	pop	r0
+ 122:	0f 90       	pop	r0
+ 124:	df 91       	pop	r29
+ 126:	cf 91       	pop	r28
+ 128:	1f 91       	pop	r17
+ 12a:	0f 91       	pop	r16
+ 12c:	08 95       	ret
+
+0000012e <lcd_write_instruction_4d>:
+  Entry:    (theInstruction) is the information to be sent to the instruction register
+  Exit:     no parameters
+  Notes:    does not deal with RW (busy flag is not implemented)
+*/
+void lcd_write_instruction_4d(uint8_t theInstruction)
+{
+ 12e:	cf 93       	push	r28
+ 130:	c8 2f       	mov	r28, r24
+    lcd_RS_port &= ~(1<<lcd_RS_bit);                // select the Instruction Register (RS low)
+ 132:	c0 98       	cbi	0x18, 0	; 24
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+ 134:	c1 98       	cbi	0x18, 1	; 24
+    lcd_write_4(theInstruction);                    // write the upper 4-bits of the data
+ 136:	0e 94 41 00 	call	0x82	; 0x82 <lcd_write_4>
+    lcd_write_4(theInstruction << 4);               // write the lower 4-bits of the data
+ 13a:	8c 2f       	mov	r24, r28
+ 13c:	82 95       	swap	r24
+ 13e:	80 7f       	andi	r24, 0xF0	; 240
+ 140:	0e 94 41 00 	call	0x82	; 0x82 <lcd_write_4>
+}
+ 144:	cf 91       	pop	r28
+ 146:	08 95       	ret
+
+00000148 <lcd_init_4d>:
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 148:	2f ef       	ldi	r18, 0xFF	; 255
+ 14a:	81 ee       	ldi	r24, 0xE1	; 225
+ 14c:	94 e0       	ldi	r25, 0x04	; 4
+ 14e:	21 50       	subi	r18, 0x01	; 1
+ 150:	80 40       	sbci	r24, 0x00	; 0
+ 152:	90 40       	sbci	r25, 0x00	; 0
+ 154:	e1 f7       	brne	.-8      	; 0x14e <lcd_init_4d+0x6>
+ 156:	00 c0       	rjmp	.+0      	; 0x158 <lcd_init_4d+0x10>
+ 158:	00 00       	nop
+//   this instruction can be sent on just the four available data lines and it will be interpreted 
+//   properly by the LCD controller.  The 'lcd_write_4' subroutine will accomplish this if the 
+//   control lines have previously been configured properly.
+
+// Set up the RS and E lines for the 'lcd_write_4' subroutine.
+    lcd_RS_port &= ~(1<<lcd_RS_bit);                // select the Instruction Register (RS low)
+ 15a:	c0 98       	cbi	0x18, 0	; 24
+    lcd_E_port &= ~(1<<lcd_E_bit);                  // make sure E is initially low
+ 15c:	c1 98       	cbi	0x18, 1	; 24
+
+// Reset the LCD controller
+    lcd_write_4(lcd_FunctionReset);                 // first part of reset sequence
+ 15e:	80 e3       	ldi	r24, 0x30	; 48
+ 160:	0e 94 41 00 	call	0x82	; 0x82 <lcd_write_4>
+ 164:	8f e3       	ldi	r24, 0x3F	; 63
+ 166:	9c e9       	ldi	r25, 0x9C	; 156
+ 168:	01 97       	sbiw	r24, 0x01	; 1
+ 16a:	f1 f7       	brne	.-4      	; 0x168 <lcd_init_4d+0x20>
+ 16c:	00 c0       	rjmp	.+0      	; 0x16e <lcd_init_4d+0x26>
+ 16e:	00 00       	nop
+    _delay_ms(10);                                  // 4.1 mS delay (min)
+
+    lcd_write_4(lcd_FunctionReset);                 // second part of reset sequence
+ 170:	80 e3       	ldi	r24, 0x30	; 48
+ 172:	0e 94 41 00 	call	0x82	; 0x82 <lcd_write_4>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 176:	8f e1       	ldi	r24, 0x1F	; 31
+ 178:	93 e0       	ldi	r25, 0x03	; 3
+ 17a:	01 97       	sbiw	r24, 0x01	; 1
+ 17c:	f1 f7       	brne	.-4      	; 0x17a <lcd_init_4d+0x32>
+ 17e:	00 c0       	rjmp	.+0      	; 0x180 <lcd_init_4d+0x38>
+ 180:	00 00       	nop
+    _delay_us(200);                                 // 100uS delay (min)
+
+    lcd_write_4(lcd_FunctionReset);                 // third part of reset sequence
+ 182:	80 e3       	ldi	r24, 0x30	; 48
+ 184:	0e 94 41 00 	call	0x82	; 0x82 <lcd_write_4>
+ 188:	8f e1       	ldi	r24, 0x1F	; 31
+ 18a:	93 e0       	ldi	r25, 0x03	; 3
+ 18c:	01 97       	sbiw	r24, 0x01	; 1
+ 18e:	f1 f7       	brne	.-4      	; 0x18c <lcd_init_4d+0x44>
+ 190:	00 c0       	rjmp	.+0      	; 0x192 <lcd_init_4d+0x4a>
+ 192:	00 00       	nop
+// Preliminary Function Set instruction - used only to set the 4-bit mode.
+// The number of lines or the font cannot be set at this time since the controller is still in the
+//  8-bit mode, but the data transfer mode can be changed since this parameter is determined by one 
+//  of the upper four bits of the instruction.
+ 
+    lcd_write_4(lcd_FunctionSet4bit);               // set 4-bit mode
+ 194:	88 e2       	ldi	r24, 0x28	; 40
+ 196:	0e 94 41 00 	call	0x82	; 0x82 <lcd_write_4>
+ 19a:	8f e3       	ldi	r24, 0x3F	; 63
+ 19c:	91 e0       	ldi	r25, 0x01	; 1
+ 19e:	01 97       	sbiw	r24, 0x01	; 1
+ 1a0:	f1 f7       	brne	.-4      	; 0x19e <lcd_init_4d+0x56>
+ 1a2:	00 c0       	rjmp	.+0      	; 0x1a4 <lcd_init_4d+0x5c>
+ 1a4:	00 00       	nop
+    _delay_us(80);                                  // 40uS delay (min)
+
+// Function Set instruction
+    lcd_write_instruction_4d(lcd_FunctionSet4bit);   // set mode, lines, and font
+ 1a6:	88 e2       	ldi	r24, 0x28	; 40
+ 1a8:	0e 94 97 00 	call	0x12e	; 0x12e <lcd_write_instruction_4d>
+ 1ac:	8f e3       	ldi	r24, 0x3F	; 63
+ 1ae:	91 e0       	ldi	r25, 0x01	; 1
+ 1b0:	01 97       	sbiw	r24, 0x01	; 1
+ 1b2:	f1 f7       	brne	.-4      	; 0x1b0 <lcd_init_4d+0x68>
+ 1b4:	00 c0       	rjmp	.+0      	; 0x1b6 <lcd_init_4d+0x6e>
+ 1b6:	00 00       	nop
+// The next three instructions are specified in the data sheet as part of the initialization routine, 
+//  so it is a good idea (but probably not necessary) to do them just as specified and then redo them 
+//  later if the application requires a different configuration.
+
+// Display On/Off Control instruction
+    lcd_write_instruction_4d(lcd_DisplayOff);        // turn display OFF
+ 1b8:	88 e0       	ldi	r24, 0x08	; 8
+ 1ba:	0e 94 97 00 	call	0x12e	; 0x12e <lcd_write_instruction_4d>
+ 1be:	8f e3       	ldi	r24, 0x3F	; 63
+ 1c0:	91 e0       	ldi	r25, 0x01	; 1
+ 1c2:	01 97       	sbiw	r24, 0x01	; 1
+ 1c4:	f1 f7       	brne	.-4      	; 0x1c2 <lcd_init_4d+0x7a>
+ 1c6:	00 c0       	rjmp	.+0      	; 0x1c8 <lcd_init_4d+0x80>
+ 1c8:	00 00       	nop
+    _delay_us(80);                                  // 40uS delay (min)
+
+// Clear Display instruction
+    lcd_write_instruction_4d(lcd_Clear);             // clear display RAM
+ 1ca:	81 e0       	ldi	r24, 0x01	; 1
+ 1cc:	0e 94 97 00 	call	0x12e	; 0x12e <lcd_write_instruction_4d>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1d0:	8f e7       	ldi	r24, 0x7F	; 127
+ 1d2:	9e e3       	ldi	r25, 0x3E	; 62
+ 1d4:	01 97       	sbiw	r24, 0x01	; 1
+ 1d6:	f1 f7       	brne	.-4      	; 0x1d4 <lcd_init_4d+0x8c>
+ 1d8:	00 c0       	rjmp	.+0      	; 0x1da <lcd_init_4d+0x92>
+ 1da:	00 00       	nop
+    _delay_ms(4);                                   // 1.64 mS delay (min)
+
+// ; Entry Mode Set instruction
+    lcd_write_instruction_4d(lcd_EntryMode);         // set desired shift characteristics
+ 1dc:	86 e0       	ldi	r24, 0x06	; 6
+ 1de:	0e 94 97 00 	call	0x12e	; 0x12e <lcd_write_instruction_4d>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 1e2:	8f e3       	ldi	r24, 0x3F	; 63
+ 1e4:	91 e0       	ldi	r25, 0x01	; 1
+ 1e6:	01 97       	sbiw	r24, 0x01	; 1
+ 1e8:	f1 f7       	brne	.-4      	; 0x1e6 <lcd_init_4d+0x9e>
+ 1ea:	00 c0       	rjmp	.+0      	; 0x1ec <lcd_init_4d+0xa4>
+ 1ec:	00 00       	nop
+
+// This is the end of the LCD controller initialization as specified in the data sheet, but the display
+//  has been left in the OFF condition.  This is a good time to turn the display back ON.
+ 
+// Display On/Off Control instruction
+    lcd_write_instruction_4d(lcd_DisplayOn);         // turn the display ON
+ 1ee:	8c e0       	ldi	r24, 0x0C	; 12
+ 1f0:	0e 94 97 00 	call	0x12e	; 0x12e <lcd_write_instruction_4d>
+ 1f4:	8f e3       	ldi	r24, 0x3F	; 63
+ 1f6:	91 e0       	ldi	r25, 0x01	; 1
+ 1f8:	01 97       	sbiw	r24, 0x01	; 1
+ 1fa:	f1 f7       	brne	.-4      	; 0x1f8 <lcd_init_4d+0xb0>
+ 1fc:	00 c0       	rjmp	.+0      	; 0x1fe <lcd_init_4d+0xb6>
+ 1fe:	00 00       	nop
+ 200:	08 95       	ret
+
+00000202 <main>:
+
+/******************************* Main Program Code *************************/
+int main(void)
+{
+// configure the microprocessor pins for the data lines
+    lcd_D7_ddr |= (1<<lcd_D7_bit);                  // 4 data lines - output
+ 202:	8e 9a       	sbi	0x11, 6	; 17
+    lcd_D6_ddr |= (1<<lcd_D6_bit);
+ 204:	8d 9a       	sbi	0x11, 5	; 17
+    lcd_D5_ddr |= (1<<lcd_D5_bit);
+ 206:	8c 9a       	sbi	0x11, 4	; 17
+    lcd_D4_ddr |= (1<<lcd_D4_bit);
+ 208:	8b 9a       	sbi	0x11, 3	; 17
+
+// configure the microprocessor pins for the control lines
+    lcd_E_ddr |= (1<<lcd_E_bit);                    // E line - output
+ 20a:	b9 9a       	sbi	0x17, 1	; 23
+    lcd_RS_ddr |= (1<<lcd_RS_bit);                  // RS line - output
+ 20c:	b8 9a       	sbi	0x17, 0	; 23
+
+// initialize the LCD controller as determined by the defines (LCD instructions)
+    lcd_init_4d();                                  // initialize the LCD display for a 4-bit interface
+ 20e:	0e 94 a4 00 	call	0x148	; 0x148 <lcd_init_4d>
+
+// display the first line of information
+    lcd_write_string_4d(program_author);
+ 212:	81 e7       	ldi	r24, 0x71	; 113
+ 214:	90 e0       	ldi	r25, 0x00	; 0
+ 216:	0e 94 66 00 	call	0xcc	; 0xcc <lcd_write_string_4d>
+
+// set cursor to start of second line
+    lcd_write_instruction_4d(lcd_SetCursor | lcd_LineTwo);
+ 21a:	80 ec       	ldi	r24, 0xC0	; 192
+ 21c:	0e 94 97 00 	call	0x12e	; 0x12e <lcd_write_instruction_4d>
+ 220:	8f e3       	ldi	r24, 0x3F	; 63
+ 222:	91 e0       	ldi	r25, 0x01	; 1
+ 224:	01 97       	sbiw	r24, 0x01	; 1
+ 226:	f1 f7       	brne	.-4      	; 0x224 <main+0x22>
+ 228:	00 c0       	rjmp	.+0      	; 0x22a <main+0x28>
+ 22a:	00 00       	nop
+    _delay_us(80);                                  // 40 uS delay (min)
+
+// display the second line of information
+    lcd_write_string_4d(program_version);
+ 22c:	80 e6       	ldi	r24, 0x60	; 96
+ 22e:	90 e0       	ldi	r25, 0x00	; 0
+ 230:	0e 94 66 00 	call	0xcc	; 0xcc <lcd_write_string_4d>
+ 234:	ff cf       	rjmp	.-2      	; 0x234 <main+0x32>
+
+00000236 <_exit>:
+ 236:	f8 94       	cli
+
+00000238 <__stop_program>:
+ 238:	ff cf       	rjmp	.-2      	; 0x238 <__stop_program>

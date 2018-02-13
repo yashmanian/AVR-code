@@ -1,0 +1,661 @@
+   1               		.file	"Photovore_v1.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   9               		.text
+  10               	.Ltext0:
+ 115               	.global	configure_ports
+ 117               	configure_ports:
+ 119               	.Ltext1:
+   1:SoR_Utils.h   **** /****************************************************************************
+   2:SoR_Utils.h   **** *
+   3:SoR_Utils.h   **** *   Copyright (c) 2007 www.societyofrobots.com
+   4:SoR_Utils.h   **** *   (please link back if you use this code!)
+   5:SoR_Utils.h   **** *
+   6:SoR_Utils.h   **** *   This program is free software; you can redistribute it and/or modify
+   7:SoR_Utils.h   **** *   it under the terms of the GNU General Public License version 2 as
+   8:SoR_Utils.h   **** *   published by the Free Software Foundation.
+   9:SoR_Utils.h   **** *
+  10:SoR_Utils.h   **** *   Alternatively, this software may be distributed under the terms of BSD
+  11:SoR_Utils.h   **** *   license.
+  12:SoR_Utils.h   **** *
+  13:SoR_Utils.h   **** *	SoR Utilities v1, March 10th, 2007
+  14:SoR_Utils.h   **** *
+  15:SoR_Utils.h   **** ****************************************************************************/
+  16:SoR_Utils.h   **** 
+  17:SoR_Utils.h   **** //AVR includes
+  18:SoR_Utils.h   **** #include <avr/io.h>		    // include I/O definitions (port names, pin names, etc)
+  19:SoR_Utils.h   **** #include <avr/interrupt.h>	// include interrupt support
+  20:SoR_Utils.h   **** 
+  21:SoR_Utils.h   **** //AVRlib includes
+  22:SoR_Utils.h   **** #include "global.h"		// include global settings
+  23:SoR_Utils.h   **** #include "buffer.h"		// include buffer function library
+  24:SoR_Utils.h   **** #include "uart.h"		// include uart function library
+  25:SoR_Utils.h   **** #include "rprintf.h"	// include printf function library
+  26:SoR_Utils.h   **** //#include "timer.h"		// include timer function library (timing, PWM, etc)
+  27:SoR_Utils.h   **** #include "a2d.h"		// include A/D converter function library
+  28:SoR_Utils.h   **** 
+  29:SoR_Utils.h   **** //define port functions; example: PORT_ON( PORTD, 6);
+  30:SoR_Utils.h   **** #define PORT_ON( port_letter, number )			port_letter |= (1<<number)
+  31:SoR_Utils.h   **** #define PORT_OFF( port_letter, number )			port_letter &= ~(1<<number)
+  32:SoR_Utils.h   **** #define PORT_ALL_ON( port_letter, number )		port_letter |= (number)
+  33:SoR_Utils.h   **** #define PORT_ALL_OFF( port_letter, number )		port_letter &= ~(number)
+  34:SoR_Utils.h   **** #define FLIP_PORT( port_letter, number )		port_letter ^= (1<<number)
+  35:SoR_Utils.h   **** #define PORT_IS_ON( port_letter, number )		( port_letter & (1<<number) )
+  36:SoR_Utils.h   **** #define PORT_IS_OFF( port_letter, number )		!( port_letter & (1<<number) )
+  37:SoR_Utils.h   **** 
+  38:SoR_Utils.h   **** 
+  39:SoR_Utils.h   **** //************CONFIGURE PORTS************
+  40:SoR_Utils.h   **** //configure ports for input or output - specific to ATmega8
+  41:SoR_Utils.h   **** void configure_ports(void)
+  42:SoR_Utils.h   **** 	{
+ 120               	FBB1
+ 121               	.LM0:
+ 122               	.LFBB1:
+ 123 0000 DF93      		push r29
+ 124 0002 CF93      		push r28
+ 125 0004 CDB7      		in r28,__SP_L__
+ 126 0006 DEB7      		in r29,__SP_H__
+ 127               	/* prologue: function */
+ 128               	/* frame size = 0 */
+  43:SoR_Utils.h   **** 	DDRC = 0x00;  //configure all C ports for input
+ 129               	8,0,43,.LM1-.LFBB1
+ 130               	.LM1:
+ 131 0008 E4E3      		ldi r30,lo8(52)
+ 132 000a F0E0      		ldi r31,hi8(52)
+ 133 000c 1082      		st Z,__zero_reg__
+  44:SoR_Utils.h   **** 	PORTC = 0x00; //make sure pull-up resistors are turned off
+ 134               	bn	68,0,44,.LM2-.LFBB1
+ 135               	.LM2:
+ 136 000e E5E3      		ldi r30,lo8(53)
+ 137 0010 F0E0      		ldi r31,hi8(53)
+ 138 0012 1082      		st Z,__zero_reg__
+  45:SoR_Utils.h   **** 	DDRD = 0xFF;  //configure all D ports for output
+ 139               	bn	68,0,45,.LM3-.LFBB1
+ 140               	.LM3:
+ 141 0014 E1E3      		ldi r30,lo8(49)
+ 142 0016 F0E0      		ldi r31,hi8(49)
+ 143 0018 8FEF      		ldi r24,lo8(-1)
+ 144 001a 8083      		st Z,r24
+  46:SoR_Utils.h   **** 	DDRB = 0xC7;  //configure B ports 0, 1, 2, 6, 7 for output (google search '0b11000111 to hex')
+ 145               	n	68,0,46,.LM4-.LFBB1
+ 146               	.LM4:
+ 147 001c E7E3      		ldi r30,lo8(55)
+ 148 001e F0E0      		ldi r31,hi8(55)
+ 149 0020 87EC      		ldi r24,lo8(-57)
+ 150 0022 8083      		st Z,r24
+ 151               	/* epilogue start */
+  47:SoR_Utils.h   **** 	}
+ 152               		68,0,47,.LM5-.LFBB1
+ 153               	.LM5:
+ 154 0024 CF91      		pop r28
+ 155 0026 DF91      		pop r29
+ 156 0028 0895      		ret
+ 158               	.Lscope1:
+ 161               	.global	delay_cycles
+ 163               	delay_cycles:
+  48:SoR_Utils.h   **** //***************************************
+  49:SoR_Utils.h   **** 
+  50:SoR_Utils.h   **** //************DELAY FUNCTIONS************
+  51:SoR_Utils.h   **** //wait for X amount of cycles (23 cycles is about .992 milliseconds)
+  52:SoR_Utils.h   **** //to calculate: 23/.992*(time in milliseconds) = number of cycles
+  53:SoR_Utils.h   **** void delay_cycles(unsigned long int cycles)
+  54:SoR_Utils.h   **** 	{
+ 164               	,54,.LM6-.LFBB2
+ 165               	.LM6:
+ 166               	.LFBB2:
+ 167 002a DF93      		push r29
+ 168 002c CF93      		push r28
+ 169 002e 00D0      		rcall .
+ 170 0030 00D0      		rcall .
+ 171 0032 CDB7      		in r28,__SP_L__
+ 172 0034 DEB7      		in r29,__SP_H__
+ 173               	/* prologue: function */
+ 174               	/* frame size = 4 */
+ 175 0036 6983      		std Y+1,r22
+ 176 0038 7A83      		std Y+2,r23
+ 177 003a 8B83      		std Y+3,r24
+ 178 003c 9C83      		std Y+4,r25
+  55:SoR_Utils.h   **** 	cycles=cycles*16;
+ 179               	,.LM7-.LFBB2
+ 180               	.LM7:
+ 181 003e 8981      		ldd r24,Y+1
+ 182 0040 9A81      		ldd r25,Y+2
+ 183 0042 AB81      		ldd r26,Y+3
+ 184 0044 BC81      		ldd r27,Y+4
+ 185 0046 880F      		add r24,r24
+ 186 0048 991F      		adc r25,r25
+ 187 004a AA1F      		adc r26,r26
+ 188 004c BB1F      		adc r27,r27
+ 189 004e 880F      		add r24,r24
+ 190 0050 991F      		adc r25,r25
+ 191 0052 AA1F      		adc r26,r26
+ 192 0054 BB1F      		adc r27,r27
+ 193 0056 880F      		add r24,r24
+ 194 0058 991F      		adc r25,r25
+ 195 005a AA1F      		adc r26,r26
+ 196 005c BB1F      		adc r27,r27
+ 197 005e 880F      		add r24,r24
+ 198 0060 991F      		adc r25,r25
+ 199 0062 AA1F      		adc r26,r26
+ 200 0064 BB1F      		adc r27,r27
+ 201 0066 8983      		std Y+1,r24
+ 202 0068 9A83      		std Y+2,r25
+ 203 006a AB83      		std Y+3,r26
+ 204 006c BC83      		std Y+4,r27
+ 205 006e 00C0      		rjmp .L4
+ 206               	.L5:
+  56:SoR_Utils.h   **** 	while(cycles > 0)
+  57:SoR_Utils.h   **** 		cycles--;
+ 207               	.LM8:
+ 208               		ldd r24,Y+1
+ 209 0070 8981      		ldd r25,Y+2
+ 210 0072 9A81      		ldd r26,Y+3
+ 211 0074 AB81      		ldd r27,Y+4
+ 212 0076 BC81      		sbiw r24,1
+ 213 0078 0197      		sbc r26,__zero_reg__
+ 214 007a A109      		sbc r27,__zero_reg__
+ 215 007c B109      		std Y+1,r24
+ 216 007e 8983      		std Y+2,r25
+ 217 0080 9A83      		std Y+3,r26
+ 218 0082 AB83      		std Y+4,r27
+ 219 0084 BC83      	.L4:
+ 221               	.LM9:
+ 222               		ldd r24,Y+1
+ 223 0086 8981      		ldd r25,Y+2
+ 224 0088 9A81      		ldd r26,Y+3
+ 225 008a AB81      		ldd r27,Y+4
+ 226 008c BC81      		sbiw r24,0
+ 227 008e 0097      		cpc r26,__zero_reg__
+ 228 0090 A105      		cpc r27,__zero_reg__
+ 229 0092 B105      		brne .L5
+ 230 0094 01F4      	/* epilogue start */
+  58:SoR_Utils.h   **** 	}
+ 232               	pop __tmp_reg__
+ 233               		pop __tmp_reg__
+ 234 0096 0F90      		pop __tmp_reg__
+ 235 0098 0F90      		pop r28
+ 236 009a 0F90      		pop r29
+ 237 009c 0F90      		ret
+ 239 00a0 DF91      	.Lscope2:
+ 241               	.global	LED_on
+ 243               	LED_on:
+ 245               	.LM11:
+ 246               	.LFBB3:
+  59:SoR_Utils.h   **** //***************************************
+  60:SoR_Utils.h   **** 
+  61:SoR_Utils.h   **** //*********SIMPLIFIED FUNCTIONS**********
+  62:SoR_Utils.h   **** //functions to make coding easier for a beginner
+  63:SoR_Utils.h   **** //but could cause port mixup confusion for intermediate users
+  64:SoR_Utils.h   **** void LED_on(void)
+  65:SoR_Utils.h   **** 	{
+ 247               	 r28
+ 248               		in r28,__SP_L__
+ 249               		in r29,__SP_H__
+ 250 00a4 DF93      	/* prologue: function */
+ 251 00a6 CF93      	/* frame size = 0 */
+ 253 00aa DEB7      	.LM12:
+ 254               		ldi r26,lo8(50)
+ 255               		ldi r27,hi8(50)
+  66:SoR_Utils.h   **** 	PORT_OFF(PORTD, 4);//turn LED on
+ 256               	lo8(50)
+ 257               		ldi r31,hi8(50)
+ 258 00ac A2E3      		ld r24,Z
+ 259 00ae B0E0      		andi r24,lo8(-17)
+ 260 00b0 E2E3      		st X,r24
+ 261 00b2 F0E0      	/* epilogue start */
+ 263 00b6 8F7E      	.LM13:
+ 264 00b8 8C93      		pop r28
+ 265               		pop r29
+  67:SoR_Utils.h   **** 	}
+ 266               	e	LED_on, .-LED_on
+ 267               	.Lscope3:
+ 269 00bc DF91      	.global	LED_off
+ 271               	LED_off:
+ 273               	.LM14:
+ 274               	.LFBB4:
+ 275               		push r29
+ 276               		push r28
+  68:SoR_Utils.h   **** void LED_off(void)
+  69:SoR_Utils.h   **** 	{
+ 277               	P_L__
+ 278               		in r29,__SP_H__
+ 279               	/* prologue: function */
+ 280 00c0 DF93      	/* frame size = 0 */
+ 282 00c4 CDB7      	.LM15:
+ 283 00c6 DEB7      		ldi r26,lo8(50)
+ 284               		ldi r27,hi8(50)
+ 285               		ldi r30,lo8(50)
+  70:SoR_Utils.h   **** 	PORT_ON(PORTD, 4);//turn LED off
+ 286               	hi8(50)
+ 287               		ld r24,Z
+ 288 00c8 A2E3      		ori r24,lo8(16)
+ 289 00ca B0E0      		st X,r24
+ 290 00cc E2E3      	/* epilogue start */
+ 292 00d0 8081      	.LM16:
+ 293 00d2 8061      		pop r28
+ 294 00d4 8C93      		pop r29
+ 295               		ret
+  71:SoR_Utils.h   **** 	}
+ 296               	_off, .-LED_off
+ 297               	.Lscope4:
+ 300 00da 0895      	.global	servo_left
+ 302               	servo_left:
+ 304               	.LM17:
+ 305               	.LFBB5:
+ 306               		push r29
+ 307               		push r28
+  72:SoR_Utils.h   **** void servo_left(signed long int speed)
+  73:SoR_Utils.h   **** 	{
+ 308               	all .
+ 309               		in r28,__SP_L__
+ 310               		in r29,__SP_H__
+ 311 00dc DF93      	/* prologue: function */
+ 312 00de CF93      	/* frame size = 4 */
+ 313 00e0 00D0      		std Y+1,r22
+ 314 00e2 00D0      		std Y+2,r23
+ 315 00e4 CDB7      		std Y+3,r24
+ 316 00e6 DEB7      		std Y+4,r25
+ 318               	.LM18:
+ 319 00e8 6983      		ldi r26,lo8(50)
+ 320 00ea 7A83      		ldi r27,hi8(50)
+ 321 00ec 8B83      		ldi r30,lo8(50)
+ 322 00ee 9C83      		ldi r31,hi8(50)
+  74:SoR_Utils.h   **** 	PORT_ON(PORTD, 2);
+ 323               	r24,lo8(4)
+ 324               		st X,r24
+ 326 00f2 B0E0      	.LM19:
+ 327 00f4 E2E3      		ldd r24,Y+1
+ 328 00f6 F0E0      		ldd r25,Y+2
+ 329 00f8 8081      		ldd r26,Y+3
+ 330 00fa 8460      		ldd r27,Y+4
+ 331 00fc 8C93      		movw r22,r24
+  75:SoR_Utils.h   **** 	delay_cycles(speed);
+ 332               	,r26
+ 333               		rcall delay_cycles
+ 335 0100 9A81      	.LM20:
+ 336 0102 AB81      		ldi r26,lo8(50)
+ 337 0104 BC81      		ldi r27,hi8(50)
+ 338 0106 BC01      		ldi r30,lo8(50)
+ 339 0108 CD01      		ldi r31,hi8(50)
+ 340 010a 00D0      		ld r24,Z
+  76:SoR_Utils.h   **** 	PORT_OFF(PORTD, 2);//keep off
+ 341               	,lo8(-5)
+ 342               		st X,r24
+ 344 010e B0E0      	.LM21:
+ 345 0110 E2E3      		ldi r22,lo8(200)
+ 346 0112 F0E0      		ldi r23,hi8(200)
+ 347 0114 8081      		ldi r24,hlo8(200)
+ 348 0116 8B7F      		ldi r25,hhi8(200)
+ 349 0118 8C93      		rcall delay_cycles
+  77:SoR_Utils.h   **** 	delay_cycles(200);
+ 350               	ue start */
+ 352 011a 68EC      	.LM22:
+ 353 011c 70E0      		pop __tmp_reg__
+ 354 011e 80E0      		pop __tmp_reg__
+ 355 0120 90E0      		pop __tmp_reg__
+ 356 0122 00D0      		pop __tmp_reg__
+ 357               		pop r28
+  78:SoR_Utils.h   **** 	}
+ 358               	
+ 359               		ret
+ 361 0126 0F90      	.Lscope5:
+ 364 012c CF91      	.global	servo_right
+ 366 0130 0895      	servo_right:
+ 368               	.LM23:
+ 369               	.LFBB6:
+ 370               		push r29
+ 371               		push r28
+ 372               		rcall .
+ 373               		rcall .
+  79:SoR_Utils.h   **** void servo_right(signed long int speed)
+  80:SoR_Utils.h   **** 	{
+ 374               	_
+ 375               		in r29,__SP_H__
+ 376               	/* prologue: function */
+ 377 0132 DF93      	/* frame size = 4 */
+ 378 0134 CF93      		std Y+1,r22
+ 379 0136 00D0      		std Y+2,r23
+ 380 0138 00D0      		std Y+3,r24
+ 381 013a CDB7      		std Y+4,r25
+ 383               	.LM24:
+ 384               		ldi r26,lo8(50)
+ 385 013e 6983      		ldi r27,hi8(50)
+ 386 0140 7A83      		ldi r30,lo8(50)
+ 387 0142 8B83      		ldi r31,hi8(50)
+ 388 0144 9C83      		ld r24,Z
+  81:SoR_Utils.h   **** 	PORT_ON(PORTD, 3);
+ 389               	
+ 390               		st X,r24
+ 392 0148 B0E0      	.LM25:
+ 393 014a E2E3      		ldd r24,Y+1
+ 394 014c F0E0      		ldd r25,Y+2
+ 395 014e 8081      		ldd r26,Y+3
+ 396 0150 8860      		ldd r27,Y+4
+ 397 0152 8C93      		movw r22,r24
+  82:SoR_Utils.h   **** 	delay_cycles(speed);		
+ 398               	4,r26
+ 399               		rcall delay_cycles
+ 401 0156 9A81      	.LM26:
+ 402 0158 AB81      		ldi r26,lo8(50)
+ 403 015a BC81      		ldi r27,hi8(50)
+ 404 015c BC01      		ldi r30,lo8(50)
+ 405 015e CD01      		ldi r31,hi8(50)
+ 406 0160 00D0      		ld r24,Z
+  83:SoR_Utils.h   **** 	PORT_OFF(PORTD, 3);//keep off
+ 407               	,lo8(-9)
+ 408               		st X,r24
+ 410 0164 B0E0      	.LM27:
+ 411 0166 E2E3      		ldi r22,lo8(200)
+ 412 0168 F0E0      		ldi r23,hi8(200)
+ 413 016a 8081      		ldi r24,hlo8(200)
+ 414 016c 877F      		ldi r25,hhi8(200)
+ 415 016e 8C93      		rcall delay_cycles
+  84:SoR_Utils.h   **** 	delay_cycles(200);
+ 416               	ue start */
+ 418 0170 68EC      	.LM28:
+ 419 0172 70E0      		pop __tmp_reg__
+ 420 0174 80E0      		pop __tmp_reg__
+ 421 0176 90E0      		pop __tmp_reg__
+ 422 0178 00D0      		pop __tmp_reg__
+ 423               		pop r28
+  85:SoR_Utils.h   **** 	}
+ 424               	di r22,lo8(200)
+ 425               		ldi r23,hi8(200)
+ 426 017a 0F90      		ldi r24,hlo8(200)
+ 427 017c 0F90      		ldi r25,hhi8(200)
+ 428 017e 0F90      		rcall delay_cycles
+ 429 0180 0F90      	/* epilogue start */
+ 431 0184 DF91      	.LM28:
+ 432 0186 0895      		pop __tmp_reg__
+ 433               		pop __tmp_reg__
+ 434               		pop __tmp_reg__
+ 435               		pop __tmp_reg__
+ 436               		pop r28
+ 437               		pop r29
+ 438               		ret
+ 440 0000 4865 6C6C 	.Lscope6:
+ 440      6F2C 2057 
+ 440      6F72 6C64 
+ 440      2120 4D79 
+ 440      2041 6E61 
+ 442               		.section	.progmem.data,"a",@progbits
+ 445               	__c.1506:
+ 446               		.string	"Hello, World! My Analog: %d\r\n"
+ 447               		.text
+   1:Photovore_v1.c **** 
+   2:Photovore_v1.c **** 
+   3:Photovore_v1.c **** //SoR Include
+   4:Photovore_v1.c **** #include "SoR_Utils.h" //includes all the technical stuff
+   5:Photovore_v1.c **** 
+   6:Photovore_v1.c **** 
+   7:Photovore_v1.c **** int main(void)
+   8:Photovore_v1.c **** 	{
+ 448               	,0,0,main
+ 449               	.global	main
+ 451 0188 DF93      	main:
+ 453 018c 00D0      	.Ltext2:
+ 455 0190 00D0      	.LM29:
+ 456 0192 CDB7      	.LFBB7:
+ 457 0194 DEB7      		push r29
+ 458               		push r28
+ 459               		rcall .
+   9:Photovore_v1.c **** 	//declare variables here
+  10:Photovore_v1.c **** 	//int i=250;//a 'whatever' variable
+  11:Photovore_v1.c **** 	int sensor_left=0;//left photoresistor
+ 460               	text
+ 462 0196 1E82      	.global	main
+  12:Photovore_v1.c **** 	int sensor_right=0;//right photoresistor
+ 464               	.section	.progmem.data,"a",@progbits
+ 467 019c 1B82      	__c.1506:
+  13:Photovore_v1.c **** 	int threshold=8;//the larger this number, the more likely your robot will drive straight
+ 468               	eg__
+ 469               		pop __tmp_reg__
+ 470 019e 88E0      		pop __tmp_reg__
+ 471 01a0 90E0      		pop r28
+ 472 01a2 9A83      		pop r29
+ 473 01a4 8983      		ret
+  14:Photovore_v1.c **** 	uartInit();  // initialize UART
+ 474               		ldi r23,hi8(200)
+ 475               		ldi r24,hlo8(200)
+ 476 01a6 00D0      		ldi r25,hhi8(200)
+  15:Photovore_v1.c **** 	uartSetBaudRate(38400);// set UART baud rate
+ 477               	all delay_cycles
+ 478               	/* epilogue start */
+ 480 01aa 76E9      	.LM28:
+ 481 01ac 80E0      		pop __tmp_reg__
+ 482 01ae 90E0      		pop __tmp_reg__
+ 483 01b0 00D0      		pop __tmp_reg__
+  16:Photovore_v1.c **** 	rprintfInit(uartSendByte);// initialize rprintf system
+ 484               	,0,84,.LM27-.LFBB6
+ 485               	.LM27:
+ 486 01b2 80E0      		ldi r22,lo8(200)
+ 487 01b4 90E0      		ldi r23,hi8(200)
+ 488 01b6 00D0      		ldi r24,hlo8(200)
+  17:Photovore_v1.c **** 	
+  18:Photovore_v1.c **** 
+  19:Photovore_v1.c **** 	/****************INITIALIZATIONS*******************/
+  20:Photovore_v1.c **** 	//other stuff Im experimenting with for SoR
+  21:Photovore_v1.c **** 	//uartInit();  // initialize the UART (serial port)
+  22:Photovore_v1.c **** 	//uartSetBaudRate(9600);// set the baud rate of the UART for our debug/reporting output
+  23:Photovore_v1.c **** 	//rprintfInit(uartSendByte);// initialize rprintf system
+  24:Photovore_v1.c **** 
+  25:Photovore_v1.c **** 	//timerInit(); // initialize the timer system
+  26:Photovore_v1.c **** 	
+  27:Photovore_v1.c **** 	configure_ports(); // configure which ports are analog, digital, etc.
+ 489               	r25,hhi8(200)
+ 490               		rcall delay_cycles
+ 491 01b8 00D0      	/* epilogue start */
+  28:Photovore_v1.c **** 	a2dInit(); // initialize analog to digital converter (ADC)
+ 492               	7,hi8(50)
+ 493               		ldi r30,lo8(50)
+ 494 01ba 00D0      		ldi r31,hi8(50)
+  29:Photovore_v1.c **** 	a2dSetPrescaler(ADC_PRESCALE_DIV32); // configure ADC scaling
+ 495               	 r24,Z
+ 496               		andi r24,lo8(-9)
+ 497 01bc 85E0      		st X,r24
+  30:Photovore_v1.c **** 	a2dSetReference(ADC_REFERENCE_AVCC); // configure ADC reference voltage
+ 499               	7:
+ 500               		ldi r22,lo8(200)
+ 501 01c0 81E0      		ldi r23,hi8(200)
+ 502 01c2 00D0      		ldi r24,hlo8(200)
+  31:Photovore_v1.c **** 
+  32:Photovore_v1.c **** 	//rprintf("Initialization Complete\r\n");
+  33:Photovore_v1.c **** 	/**************************************************/
+  34:Photovore_v1.c **** 
+  35:Photovore_v1.c **** 	
+  36:Photovore_v1.c **** 	/*********ADD YOUR CODE BELOW THIS LINE **********/
+  37:Photovore_v1.c **** 	LED_off();//turn LED on
+ 503               	 r25,hhi8(200)
+ 504               		rcall delay_cycles
+ 505 01c4 00D0      	/* epilogue start */
+  38:Photovore_v1.c **** 
+  39:Photovore_v1.c **** 
+  40:Photovore_v1.c **** 	while(1)
+  41:Photovore_v1.c **** 		{
+  42:Photovore_v1.c **** 		//store sensor data
+  43:Photovore_v1.c **** 		sensor_left=a2dConvert8bit(5);
+ 507               	i r31,hi8(50)
+ 508               		ld r24,Z
+ 509 01c6 85E0      		andi r24,lo8(-9)
+ 510 01c8 00D0      		st X,r24
+ 512 01cc 90E0      	.LM27:
+ 513 01ce 9E83      		ldi r22,lo8(200)
+ 514 01d0 8D83      		ldi r23,hi8(200)
+  44:Photovore_v1.c **** 		sensor_right=a2dConvert8bit(4);
+ 515               	,hlo8(200)
+ 516               		ldi r25,hhi8(200)
+ 517 01d2 84E0      		rcall delay_cycles
+ 518 01d4 00D0      	/* epilogue start */
+ 520 01d8 90E0      	.LM28:
+ 521 01da 9C83      		pop __tmp_reg__
+ 522 01dc 8B83      		pop __tmp_reg__
+  45:Photovore_v1.c **** 
+  46:Photovore_v1.c **** 
+  47:Photovore_v1.c **** 		//detects more light on left side of robot
+  48:Photovore_v1.c **** 		if(sensor_left > sensor_right && (sensor_left - sensor_right) > threshold)
+ 523               	t X,r24
+ 525 01de 2D81      	.LM27:
+ 526 01e0 3E81      		ldi r22,lo8(200)
+ 527 01e2 8B81      		ldi r23,hi8(200)
+ 528 01e4 9C81      		ldi r24,hlo8(200)
+ 529 01e6 8217      		ldi r25,hhi8(200)
+ 530 01e8 9307      		rcall delay_cycles
+ 531 01ea 04F4      	/* epilogue start */
+ 533 01ee 3E81      	.LM28:
+ 534 01f0 8B81      		pop __tmp_reg__
+ 535 01f2 9C81      		pop __tmp_reg__
+ 536 01f4 281B      		pop __tmp_reg__
+ 537 01f6 390B      		pop __tmp_reg__
+ 538 01f8 8981      		pop r28
+ 539 01fa 9A81      		pop r29
+ 540 01fc 8217      		ret
+ 542 0200 04F4      	.Lscope6:
+  49:Photovore_v1.c **** 			{//go left
+  50:Photovore_v1.c **** 			servo_left(44);
+ 543               	section	.progmem.data,"a",@progbits
+ 546 0204 70E0      	__c.1506:
+ 547 0206 80E0      		.string	"Hello, World! My Analog: %d\r\n"
+ 548 0208 90E0      		.text
+  51:Photovore_v1.c **** 			servo_right(44);
+ 550               	vo_right
+ 551               	.Lscope6:
+ 553 020e 70E0      		.section	.progmem.data,"a",@progbits
+ 556 0214 00D0      	__c.1506:
+ 557 0216 00C0      		.string	"Hello, World! My Analog: %d\r\n"
+ 558               		.text
+  52:Photovore_v1.c **** 			}
+  53:Photovore_v1.c **** 
+  54:Photovore_v1.c **** 		//detects more light on right side of robot
+  55:Photovore_v1.c **** 		else if(sensor_right > sensor_left && (sensor_right - sensor_left) > threshold)
+ 559               	 r29
+ 560               		ret
+ 562 021a 3C81      	.Lscope6:
+ 564 021e 9E81      		.section	.progmem.data,"a",@progbits
+ 567 0224 04F4      	__c.1506:
+ 568 0226 2B81      		.string	"Hello, World! My Analog: %d\r\n"
+ 569 0228 3C81      		.text
+ 571 022c 9E81      	.global	main
+ 573 0230 390B      	main:
+ 575 0234 9A81      	.Ltext2:
+ 577 0238 9307      	.LM29:
+ 578 023a 04F4      	.LFBB7:
+  56:Photovore_v1.c **** 			{//go right
+  57:Photovore_v1.c **** 			servo_left(25);
+ 579               	lo, World! My Analog: %d\r\n"
+ 580               		.text
+ 582 023e 70E0      	.global	main
+ 584 0242 90E0      	main:
+  58:Photovore_v1.c **** 			servo_right(25);
+ 586               	506, @object
+ 588 0246 69E1      	__c.1506:
+ 589 0248 70E0      		.string	"Hello, World! My Analog: %d\r\n"
+ 590 024a 80E0      		.text
+ 592 024e 00D0      	.global	main
+ 594               	main:
+  59:Photovore_v1.c **** 			}
+  60:Photovore_v1.c **** 
+  61:Photovore_v1.c **** 		//light is about equal on both sides
+  62:Photovore_v1.c **** 		else
+  63:Photovore_v1.c **** 			{//go straight
+  64:Photovore_v1.c **** 			servo_left(25);
+ 595               	n	.progmem.data,"a",@progbits
+ 598 0254 70E0      	__c.1506:
+ 599 0256 80E0      		.string	"Hello, World! My Analog: %d\r\n"
+ 600 0258 90E0      		.text
+  65:Photovore_v1.c **** 			servo_right(44);
+ 602               	vo_right
+ 603               	.Lscope6:
+ 605 025e 70E0      		.section	.progmem.data,"a",@progbits
+ 608 0264 00D0      	__c.1506:
+ 609               		.string	"Hello, World! My Analog: %d\r\n"
+ 610               		.text
+  66:Photovore_v1.c **** 			}
+  67:Photovore_v1.c **** 
+  68:Photovore_v1.c **** 
+  69:Photovore_v1.c **** 		/* Servo Test Code
+  70:Photovore_v1.c **** 		i=250;
+  71:Photovore_v1.c **** 		while(i>0)
+  72:Photovore_v1.c **** 			{
+  73:Photovore_v1.c **** 			servo_left(40);
+  74:Photovore_v1.c **** 			i--;
+  75:Photovore_v1.c **** 			}
+  76:Photovore_v1.c **** 
+  77:Photovore_v1.c **** 		i=250;
+  78:Photovore_v1.c **** 		while(i>0)
+  79:Photovore_v1.c **** 			{
+  80:Photovore_v1.c **** 			servo_left(24);
+  81:Photovore_v1.c **** 			i--;
+  82:Photovore_v1.c **** 			}
+  83:Photovore_v1.c **** 		*/
+  84:Photovore_v1.c **** 
+  85:Photovore_v1.c **** 		//rprintf("Initialization Complete\r\n");
+  86:Photovore_v1.c **** 		
+  87:Photovore_v1.c **** 		//output message to serial (use hyperterminal)
+  88:Photovore_v1.c **** 		rprintf("Hello, World! My Analog: %d\r\n", sensor_left);//print("Hello, World! Read My Analog: %u
+ 611               	 r29
+ 612               		ret
+ 614 0268 30E0      	.Lscope6:
+ 616 026a 00D0      		.section	.progmem.data,"a",@progbits
+ 619 0270 EDB7      	__c.1506:
+ 620 0272 FEB7      		.string	"Hello, World! My Analog: %d\r\n"
+ 621 0274 3196      		.text
+ 623 0278 8083      	.global	main
+ 625 027c 2183      	main:
+ 627 0280 9E81      	.Ltext2:
+ 629 0284 8383      	.LM29:
+ 630 0286 00D0      	.LFBB7:
+ 631 0288 0F90      		push r29
+ 632 028a 0F90      		push r28
+ 633 028c 0F90      		rcall .
+ 634 028e 0F90      		rcall .
+ 635 0290 0F90      		rcall .
+  89:Photovore_v1.c **** 
+  90:Photovore_v1.c **** 		delay_cycles(500);//a small delay to prevent crazy oscillations
+ 636               	(0,1)",36,0,0,main
+ 637               	.global	main
+ 639 0294 71E0      	main:
+ 641 0298 90E0      	.Ltext2:
+ 643 029c 00C0      	.LM29:
+ 644               	.LFBB7:
+ 645               		push r29
+ 646               		push r28
+ 647               		rcall .
+ 648               		rcall .
+ 649               		rcall .
+ 650               		in r28,__SP_L__
+ 651               		in r29,__SP_H__
+ 652               	/* prologue: function */
+ 653               	/* frame size = 6 */
+ 655               	.LM30:
+ 656               		std Y+6,__zero_reg__
+DEFINED SYMBOLS
+                            *ABS*:00000000 Photovore_v1.c
+C:\Users\YASHMA~1\AppData\Local\Temp/ccNNeY57.s:2      *ABS*:0000003f __SREG__
+C:\Users\YASHMA~1\AppData\Local\Temp/ccNNeY57.s:3      *ABS*:0000003e __SP_H__
+C:\Users\YASHMA~1\AppData\Local\Temp/ccNNeY57.s:4      *ABS*:0000003d __SP_L__
+C:\Users\YASHMA~1\AppData\Local\Temp/ccNNeY57.s:5      *ABS*:00000034 __CCP__
+C:\Users\YASHMA~1\AppData\Local\Temp/ccNNeY57.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\YASHMA~1\AppData\Local\Temp/ccNNeY57.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\YASHMA~1\AppData\Local\Temp/ccNNeY57.s:117    .text:00000000 configure_ports
+C:\Users\YASHMA~1\AppData\Local\Temp/ccNNeY57.s:163    .text:0000002a delay_cycles
+C:\Users\YASHMA~1\AppData\Local\Temp/ccNNeY57.s:246    .text:000000a4 LED_on
+C:\Users\YASHMA~1\AppData\Local\Temp/ccNNeY57.s:276    .text:000000c0 LED_off
+C:\Users\YASHMA~1\AppData\Local\Temp/ccNNeY57.s:307    .text:000000dc servo_left
+C:\Users\YASHMA~1\AppData\Local\Temp/ccNNeY57.s:373    .text:00000132 servo_right
+C:\Users\YASHMA~1\AppData\Local\Temp/ccNNeY57.s:439    .progmem.data:00000000 __c.1506
+C:\Users\YASHMA~1\AppData\Local\Temp/ccNNeY57.s:445    .text:00000188 main
+
+UNDEFINED SYMBOLS
+uartInit
+uartSetBaudRate
+uartSendByte
+rprintfInit
+a2dInit
+a2dSetPrescaler
+a2dSetReference
+a2dConvert8bit
+rprintf1RamRom

@@ -1,0 +1,113 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	Wait
+  18               	Wait:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 40E0      		ldi r20,lo8(0)
+  25               	.LVL0:
+  26               	.LBB8:
+  27               	.LBB9:
+  28               	.LM3:
+  29 0002 20E0      		ldi r18,lo8(0)
+  30 0004 30E0      		ldi r19,hi8(0)
+  31               	.L2:
+  32 0006 C901      		movw r24,r18
+  33               	.LVL1:
+  34               	/* #APP */
+  35               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  36 0008 0197      		1: sbiw r24,1
+  37 000a 01F4      		brne 1b
+  38               	 ;  0 "" 2
+  39               	/* #NOAPP */
+  40               	.LBE9:
+  41               	.LBE8:
+  42               	.LBB10:
+  43               	.LBB11:
+  44 000c C901      		movw r24,r18
+  45               	.LVL2:
+  46               	/* #APP */
+  47               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  48 000e 0197      		1: sbiw r24,1
+  49 0010 01F4      		brne 1b
+  50               	 ;  0 "" 2
+  51               	/* #NOAPP */
+  52               	.LBE11:
+  53               	.LBE10:
+  54               	.LBB12:
+  55               	.LBB13:
+  56 0012 C901      		movw r24,r18
+  57               	.LVL3:
+  58               	/* #APP */
+  59               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  60 0014 0197      		1: sbiw r24,1
+  61 0016 01F4      		brne 1b
+  62               	 ;  0 "" 2
+  63               	/* #NOAPP */
+  64               	.LBE13:
+  65               	.LBE12:
+  66               	.LM4:
+  67 0018 4F5F      		subi r20,lo8(-(1))
+  68 001a 4233      		cpi r20,lo8(50)
+  69 001c 01F4      		brne .L2
+  70               	/* epilogue start */
+  71               	.LM5:
+  72 001e 0895      		ret
+  73               	.LFE6:
+  75               	.global	main
+  77               	main:
+  78               	.LFB7:
+  79               	.LM6:
+  80 0020 CF93      		push r28
+  81 0022 DF93      		push r29
+  82               	/* prologue: function */
+  83               	/* frame size = 0 */
+  84               	.LM7:
+  85 0024 8FB5      		in r24,79-32
+  86 0026 826A      		ori r24,lo8(-94)
+  87 0028 8FBD      		out 79-32,r24
+  88               	.LM8:
+  89 002a 8EB5      		in r24,78-32
+  90 002c 8B61      		ori r24,lo8(27)
+  91 002e 8EBD      		out 78-32,r24
+  92               	.LM9:
+  93 0030 87E8      		ldi r24,lo8(4999)
+  94 0032 93E1      		ldi r25,hi8(4999)
+  95 0034 97BD      		out (70)+1-32,r25
+  96 0036 86BD      		out 70-32,r24
+  97               	.LM10:
+  98 0038 81B3      		in r24,49-32
+  99 003a 8063      		ori r24,lo8(48)
+ 100 003c 81BB      		out 49-32,r24
+ 101               	.LM11:
+ 102 003e CCE3      		ldi r28,lo8(316)
+ 103 0040 D1E0      		ldi r29,hi8(316)
+ 104               	.L6:
+ 105 0042 DBBD      		out (74)+1-32,r29
+ 106 0044 CABD      		out 74-32,r28
+ 107               	.LM12:
+ 108 0046 0E94 0000 		call Wait
+ 109 004a 00C0      		rjmp .L6
+ 110               	.LFE7:
+ 144               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\YASHMA~1\AppData\Local\Temp/cca3d5Yb.s:2      *ABS*:0000003f __SREG__
+C:\Users\YASHMA~1\AppData\Local\Temp/cca3d5Yb.s:3      *ABS*:0000003e __SP_H__
+C:\Users\YASHMA~1\AppData\Local\Temp/cca3d5Yb.s:4      *ABS*:0000003d __SP_L__
+C:\Users\YASHMA~1\AppData\Local\Temp/cca3d5Yb.s:5      *ABS*:00000034 __CCP__
+C:\Users\YASHMA~1\AppData\Local\Temp/cca3d5Yb.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\YASHMA~1\AppData\Local\Temp/cca3d5Yb.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\YASHMA~1\AppData\Local\Temp/cca3d5Yb.s:18     .text:00000000 Wait
+C:\Users\YASHMA~1\AppData\Local\Temp/cca3d5Yb.s:77     .text:00000020 main
+
+NO UNDEFINED SYMBOLS

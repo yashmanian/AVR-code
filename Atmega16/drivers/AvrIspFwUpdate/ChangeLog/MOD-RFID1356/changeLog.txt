@@ -1,0 +1,7 @@
+version 0x0100 - released on 20 april 2010
+	- Initial working version of the program
+	- Source code created by dimitar, minor edits and bugfixes by sasho.
+	- Added support for standalone UART mode since prerelease version. It is not identical to the CDC mode
+	  because it only supports one direction (TX) communication with host at
+	  57600-8-N-1 configuration. Configuration of parameters of the device is only possible
+	  through the CDC mode.

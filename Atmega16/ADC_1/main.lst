@@ -1,0 +1,174 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               		.data
+  17               	.LC0:
+  18 0000 2000      		.string	" "
+  19               		.text
+  20               	.global	__vector_14
+  22               	__vector_14:
+  23               	.LFB7:
+  24               	.LM1:
+  25 0000 1F92      		push __zero_reg__
+  26 0002 0F92      		push r0
+  27 0004 0FB6      		in r0,__SREG__
+  28 0006 0F92      		push r0
+  29 0008 1124      		clr __zero_reg__
+  30 000a 2F93      		push r18
+  31 000c 3F93      		push r19
+  32 000e 4F93      		push r20
+  33 0010 5F93      		push r21
+  34 0012 6F93      		push r22
+  35 0014 7F93      		push r23
+  36 0016 8F93      		push r24
+  37 0018 9F93      		push r25
+  38 001a AF93      		push r26
+  39 001c BF93      		push r27
+  40 001e EF93      		push r30
+  41 0020 FF93      		push r31
+  42               	/* prologue: Signal */
+  43               	/* frame size = 0 */
+  44               	.LM2:
+  45 0022 85B1      		in r24,37-32
+  46 0024 90E0      		ldi r25,lo8(0)
+  47 0026 60E0      		ldi r22,lo8(ADC_result)
+  48 0028 70E0      		ldi r23,hi8(ADC_result)
+  49 002a 4AE0      		ldi r20,lo8(10)
+  50 002c 50E0      		ldi r21,hi8(10)
+  51 002e 0E94 0000 		call itoa
+  52               	.LM3:
+  53 0032 81E0      		ldi r24,lo8(1)
+  54 0034 61E0      		ldi r22,lo8(1)
+  55 0036 0E94 0000 		call LCDGotoXY
+  56               	.LM4:
+  57 003a 80E0      		ldi r24,lo8(0)
+  58 003c 61E0      		ldi r22,lo8(1)
+  59 003e 0E94 0000 		call LCDGotoXY
+  60 0042 80E0      		ldi r24,lo8(ADC_result)
+  61 0044 90E0      		ldi r25,hi8(ADC_result)
+  62 0046 0E94 0000 		call LCDWriteString
+  63               	.LM5:
+  64 004a 80E0      		ldi r24,lo8(.LC0)
+  65 004c 90E0      		ldi r25,hi8(.LC0)
+  66 004e 0E94 0000 		call LCDWriteString
+  67               	.LM6:
+  68 0052 369A      		sbi 38-32,6
+  69 0054 80E2      		ldi r24,lo8(800)
+  70 0056 93E0      		ldi r25,hi8(800)
+  71               	.LVL0:
+  72               	.LBB12:
+  73               	.LBB13:
+  74               	.LBB14:
+  75               	.LBB15:
+  76               	.LM7:
+  77 0058 20E9      		ldi r18,lo8(400)
+  78 005a 31E0      		ldi r19,hi8(400)
+  79               	.L2:
+  80 005c F901      		movw r30,r18
+  81               	.LVL1:
+  82               	/* #APP */
+  83               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  84 005e 3197      		1: sbiw r30,1
+  85 0060 01F4      		brne 1b
+  86               	 ;  0 "" 2
+  87               	/* #NOAPP */
+  88               	.LBE15:
+  89               	.LBE14:
+  90               	.LM8:
+  91 0062 0197      		sbiw r24,1
+  92               	.LM9:
+  93 0064 01F4      		brne .L2
+  94               	/* epilogue start */
+  95               	.LBE13:
+  96               	.LBE12:
+  97               	.LM10:
+  98 0066 FF91      		pop r31
+  99 0068 EF91      		pop r30
+ 100               	.LVL2:
+ 101 006a BF91      		pop r27
+ 102 006c AF91      		pop r26
+ 103 006e 9F91      		pop r25
+ 104 0070 8F91      		pop r24
+ 105               	.LVL3:
+ 106 0072 7F91      		pop r23
+ 107 0074 6F91      		pop r22
+ 108 0076 5F91      		pop r21
+ 109 0078 4F91      		pop r20
+ 110 007a 3F91      		pop r19
+ 111 007c 2F91      		pop r18
+ 112 007e 0F90      		pop r0
+ 113 0080 0FBE      		out __SREG__,r0
+ 114 0082 0F90      		pop r0
+ 115 0084 1F90      		pop __zero_reg__
+ 116 0086 1895      		reti
+ 117               	.LFE7:
+ 119               		.data
+ 120               	.LC1:
+ 121 0002 4144 435F 		.string	"ADC_1"
+ 121      3100 
+ 122               		.text
+ 123               	.global	main
+ 125               	main:
+ 126               	.LFB6:
+ 127               	.LM11:
+ 128               	/* prologue: function */
+ 129               	/* frame size = 0 */
+ 130               	.LM12:
+ 131 0088 82E0      		ldi r24,lo8(2)
+ 132 008a 0E94 0000 		call LCDInit
+ 133               	.LM13:
+ 134 008e 86B1      		in r24,38-32
+ 135 0090 8760      		ori r24,lo8(7)
+ 136 0092 86B9      		out 38-32,r24
+ 137               	.LM14:
+ 138 0094 3D9A      		sbi 39-32,5
+ 139               	.LM15:
+ 140 0096 3E9A      		sbi 39-32,6
+ 141               	.LM16:
+ 142 0098 339A      		sbi 38-32,3
+ 143               	.LM17:
+ 144               	/* #APP */
+ 145               	 ;  20 "main.c" 1
+ 146 009a 7894      		sei
+ 147               	 ;  0 "" 2
+ 148               	.LM18:
+ 149               	/* #NOAPP */
+ 150 009c 379A      		sbi 38-32,7
+ 151               	.LM19:
+ 152 009e 369A      		sbi 38-32,6
+ 153               	.LM20:
+ 154 00a0 80E0      		ldi r24,lo8(0)
+ 155 00a2 60E0      		ldi r22,lo8(0)
+ 156 00a4 0E94 0000 		call LCDGotoXY
+ 157 00a8 80E0      		ldi r24,lo8(.LC1)
+ 158 00aa 90E0      		ldi r25,hi8(.LC1)
+ 159 00ac 0E94 0000 		call LCDWriteString
+ 160               	.L6:
+ 161 00b0 00C0      		rjmp .L6
+ 162               	.LFE6:
+ 164               		.comm ADC_result,4,1
+ 197               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\DOCUME~1\robocon\LOCALS~1\Temp/ccRdbcHF.s:2      *ABS*:0000003f __SREG__
+C:\DOCUME~1\robocon\LOCALS~1\Temp/ccRdbcHF.s:3      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\robocon\LOCALS~1\Temp/ccRdbcHF.s:4      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\robocon\LOCALS~1\Temp/ccRdbcHF.s:5      *ABS*:00000034 __CCP__
+C:\DOCUME~1\robocon\LOCALS~1\Temp/ccRdbcHF.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\robocon\LOCALS~1\Temp/ccRdbcHF.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\robocon\LOCALS~1\Temp/ccRdbcHF.s:22     .text:00000000 __vector_14
+                            *COM*:00000004 ADC_result
+C:\DOCUME~1\robocon\LOCALS~1\Temp/ccRdbcHF.s:125    .text:00000088 main
+
+UNDEFINED SYMBOLS
+itoa
+LCDGotoXY
+LCDWriteString
+LCDInit
+__do_copy_data
+__do_clear_bss

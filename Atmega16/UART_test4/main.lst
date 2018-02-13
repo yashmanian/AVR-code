@@ -1,0 +1,214 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	__vector_11
+  18               	__vector_11:
+  19               	.LFB6:
+  20               	.LM1:
+  21 0000 1F92      		push __zero_reg__
+  22 0002 0F92      		push r0
+  23 0004 0FB6      		in r0,__SREG__
+  24 0006 0F92      		push r0
+  25 0008 1124      		clr __zero_reg__
+  26 000a 8F93      		push r24
+  27               	/* prologue: Signal */
+  28               	/* frame size = 0 */
+  29               	.LM2:
+  30 000c 8CB1      		in r24,44-32
+  31 000e 8093 0000 		sts value,r24
+  32               	.LM3:
+  33 0012 8091 0000 		lds r24,value
+  34 0016 8095      		com r24
+  35 0018 82BB      		out 50-32,r24
+  36               	/* epilogue start */
+  37               	.LM4:
+  38 001a 8F91      		pop r24
+  39 001c 0F90      		pop r0
+  40 001e 0FBE      		out __SREG__,r0
+  41 0020 0F90      		pop r0
+  42 0022 1F90      		pop __zero_reg__
+  43 0024 1895      		reti
+  44               	.LFE6:
+  46               	.global	USART_Init
+  48               	USART_Init:
+  49               	.LFB7:
+  50               	.LM5:
+  51               	/* prologue: function */
+  52               	/* frame size = 0 */
+  53               	.LM6:
+  54 0026 89E1      		ldi r24,lo8(25)
+  55 0028 89B9      		out 41-32,r24
+  56               	.LM7:
+  57 002a 10BC      		out 64-32,__zero_reg__
+  58               	.LM8:
+  59 002c 88E9      		ldi r24,lo8(-104)
+  60 002e 8AB9      		out 42-32,r24
+  61               	/* epilogue start */
+  62               	.LM9:
+  63 0030 0895      		ret
+  64               	.LFE7:
+  66               	.global	USART_SendByte
+  68               	USART_SendByte:
+  69               	.LFB8:
+  70               	.LM10:
+  71               	/* prologue: function */
+  72               	/* frame size = 0 */
+  73               	.LVL0:
+  74               	.L6:
+  75               	.LM11:
+  76 0032 5D9B      		sbis 43-32,5
+  77 0034 00C0      		rjmp .L6
+  78               	.LM12:
+  79 0036 8CB9      		out 44-32,r24
+  80               	/* epilogue start */
+  81               	.LM13:
+  82 0038 0895      		ret
+  83               	.LFE8:
+  85               	.global	USART_ReceiveByte
+  87               	USART_ReceiveByte:
+  88               	.LFB9:
+  89               	.LM14:
+  90               	/* prologue: function */
+  91               	/* frame size = 0 */
+  92               	.L10:
+  93               	.LM15:
+  94 003a 5F9B      		sbis 43-32,7
+  95 003c 00C0      		rjmp .L10
+  96               	.LM16:
+  97 003e 8CB1      		in r24,44-32
+  98               	/* epilogue start */
+  99               	.LM17:
+ 100 0040 0895      		ret
+ 101               	.LFE9:
+ 103               	.global	Led_init
+ 105               	Led_init:
+ 106               	.LFB10:
+ 107               	.LM18:
+ 108               	/* prologue: function */
+ 109               	/* frame size = 0 */
+ 110               	.LM19:
+ 111 0042 8FEF      		ldi r24,lo8(-1)
+ 112 0044 81BB      		out 49-32,r24
+ 113               	.LM20:
+ 114 0046 82BB      		out 50-32,r24
+ 115               	/* epilogue start */
+ 116               	.LM21:
+ 117 0048 0895      		ret
+ 118               	.LFE10:
+ 120               	.global	main
+ 122               	main:
+ 123               	.LFB11:
+ 124               	.LM22:
+ 125               	/* prologue: function */
+ 126               	/* frame size = 0 */
+ 127               	.LBB18:
+ 128               	.LBB19:
+ 129               	.LM23:
+ 130 004a 89E1      		ldi r24,lo8(25)
+ 131 004c 89B9      		out 41-32,r24
+ 132               	.LM24:
+ 133 004e 10BC      		out 64-32,__zero_reg__
+ 134               	.LM25:
+ 135 0050 88E9      		ldi r24,lo8(-104)
+ 136 0052 8AB9      		out 42-32,r24
+ 137               	.LBE19:
+ 138               	.LBE18:
+ 139               	.LM26:
+ 140               	/* #APP */
+ 141               	 ;  73 "main.c" 1
+ 142 0054 7894      		sei
+ 143               	 ;  0 "" 2
+ 144               	/* #NOAPP */
+ 145               	.LBB20:
+ 146               	.LBB21:
+ 147               	.LM27:
+ 148 0056 8FEF      		ldi r24,lo8(-1)
+ 149 0058 81BB      		out 49-32,r24
+ 150               	.LM28:
+ 151 005a 82BB      		out 50-32,r24
+ 152               	.LBE21:
+ 153               	.LBE20:
+ 154               	.LM29:
+ 155 005c 81E4      		ldi r24,lo8(65)
+ 156 005e 8093 0000 		sts value,r24
+ 157               	.LM30:
+ 158 0062 8091 0000 		lds r24,value
+ 159 0066 8095      		com r24
+ 160 0068 88BB      		out 56-32,r24
+ 161               	.LBB22:
+ 162               	.LBB23:
+ 163               	.LBB24:
+ 164               	.LBB25:
+ 165               	.LM31:
+ 166 006a 20E9      		ldi r18,lo8(400)
+ 167 006c 31E0      		ldi r19,hi8(400)
+ 168               	.LVL1:
+ 169               	.L18:
+ 170               	.LBE25:
+ 171               	.LBE24:
+ 172               	.LBE23:
+ 173               	.LBE22:
+ 174               	.LM32:
+ 175 006e 8091 0000 		lds r24,value
+ 176               	.LVL2:
+ 177               	.L16:
+ 178               	.LBB29:
+ 179               	.LBB30:
+ 180               	.LM33:
+ 181 0072 5D9B      		sbis 43-32,5
+ 182 0074 00C0      		rjmp .L16
+ 183               	.LM34:
+ 184 0076 8CB9      		out 44-32,r24
+ 185 0078 84EC      		ldi r24,lo8(2500)
+ 186 007a 99E0      		ldi r25,hi8(2500)
+ 187               	.LVL3:
+ 188               	.L17:
+ 189               	.LBE30:
+ 190               	.LBE29:
+ 191               	.LBB31:
+ 192               	.LBB28:
+ 193               	.LBB27:
+ 194               	.LBB26:
+ 195               	.LM35:
+ 196 007c F901      		movw r30,r18
+ 197               	/* #APP */
+ 198               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 199 007e 3197      		1: sbiw r30,1
+ 200 0080 01F4      		brne 1b
+ 201               	 ;  0 "" 2
+ 202               	/* #NOAPP */
+ 203               	.LBE26:
+ 204               	.LBE27:
+ 205               	.LM36:
+ 206 0082 0197      		sbiw r24,1
+ 207               	.LM37:
+ 208 0084 01F4      		brne .L17
+ 209 0086 00C0      		rjmp .L18
+ 210               	.LBE28:
+ 211               	.LBE31:
+ 212               	.LFE11:
+ 214               		.comm value,1,1
+ 279               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\YASHMA~1\AppData\Local\Temp/cczYXhXA.s:2      *ABS*:0000003f __SREG__
+C:\Users\YASHMA~1\AppData\Local\Temp/cczYXhXA.s:3      *ABS*:0000003e __SP_H__
+C:\Users\YASHMA~1\AppData\Local\Temp/cczYXhXA.s:4      *ABS*:0000003d __SP_L__
+C:\Users\YASHMA~1\AppData\Local\Temp/cczYXhXA.s:5      *ABS*:00000034 __CCP__
+C:\Users\YASHMA~1\AppData\Local\Temp/cczYXhXA.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\YASHMA~1\AppData\Local\Temp/cczYXhXA.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\YASHMA~1\AppData\Local\Temp/cczYXhXA.s:18     .text:00000000 __vector_11
+                            *COM*:00000001 value
+C:\Users\YASHMA~1\AppData\Local\Temp/cczYXhXA.s:48     .text:00000026 USART_Init
+C:\Users\YASHMA~1\AppData\Local\Temp/cczYXhXA.s:68     .text:00000032 USART_SendByte
+C:\Users\YASHMA~1\AppData\Local\Temp/cczYXhXA.s:87     .text:0000003a USART_ReceiveByte
+C:\Users\YASHMA~1\AppData\Local\Temp/cczYXhXA.s:105    .text:00000042 Led_init
+C:\Users\YASHMA~1\AppData\Local\Temp/cczYXhXA.s:122    .text:0000004a main
+
+UNDEFINED SYMBOLS
+__do_clear_bss

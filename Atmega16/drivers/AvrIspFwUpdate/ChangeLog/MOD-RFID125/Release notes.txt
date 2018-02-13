@@ -1,0 +1,8 @@
+--- RELEASE NOTES FOR MOD-RFID125 ---
+
+*** 22 Feb 2011 - 0x104
+	- Fixed input buffer overflow
+
+*** 22 Feb 2011 - 0x103
+Changes up to 22 Feb 2011
+	Dimitar Dimitrov managed firmware to this date

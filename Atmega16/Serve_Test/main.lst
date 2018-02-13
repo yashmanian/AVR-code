@@ -1,0 +1,296 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	configure_ports
+  18               	configure_ports:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 14BA      		out 52-32,__zero_reg__
+  25               	.LM3:
+  26 0002 15BA      		out 53-32,__zero_reg__
+  27               	.LM4:
+  28 0004 8FEF      		ldi r24,lo8(-1)
+  29 0006 81BB      		out 49-32,r24
+  30               	.LM5:
+  31 0008 87EC      		ldi r24,lo8(-57)
+  32 000a 87BB      		out 55-32,r24
+  33               	/* epilogue start */
+  34               	.LM6:
+  35 000c 0895      		ret
+  36               	.LFE6:
+  38               	.global	delay_cycles
+  40               	delay_cycles:
+  41               	.LFB7:
+  42               	.LM7:
+  43               	.LVL0:
+  44               	/* prologue: function */
+  45               	/* frame size = 0 */
+  46               	/* epilogue start */
+  47               	.LM8:
+  48 000e 0895      		ret
+  49               	.LFE7:
+  51               	.global	LED_on
+  53               	LED_on:
+  54               	.LFB8:
+  55               	.LM9:
+  56               	/* prologue: function */
+  57               	/* frame size = 0 */
+  58               	.LM10:
+  59 0010 9498      		cbi 50-32,4
+  60               	/* epilogue start */
+  61               	.LM11:
+  62 0012 0895      		ret
+  63               	.LFE8:
+  65               	.global	LED_off
+  67               	LED_off:
+  68               	.LFB9:
+  69               	.LM12:
+  70               	/* prologue: function */
+  71               	/* frame size = 0 */
+  72               	.LM13:
+  73 0014 949A      		sbi 50-32,4
+  74               	/* epilogue start */
+  75               	.LM14:
+  76 0016 0895      		ret
+  77               	.LFE9:
+  79               	.global	servo_left
+  81               	servo_left:
+  82               	.LFB10:
+  83               	.LM15:
+  84               	.LVL1:
+  85               	/* prologue: function */
+  86               	/* frame size = 0 */
+  87               	.LM16:
+  88 0018 929A      		sbi 50-32,2
+  89               	.LM17:
+  90 001a 9298      		cbi 50-32,2
+  91               	/* epilogue start */
+  92               	.LM18:
+  93 001c 0895      		ret
+  94               	.LFE10:
+  96               	.global	servo_right
+  98               	servo_right:
+  99               	.LFB11:
+ 100               	.LM19:
+ 101               	.LVL2:
+ 102               	/* prologue: function */
+ 103               	/* frame size = 0 */
+ 104               	.LM20:
+ 105 001e 939A      		sbi 50-32,3
+ 106               	.LM21:
+ 107 0020 9398      		cbi 50-32,3
+ 108               	/* epilogue start */
+ 109               	.LM22:
+ 110 0022 0895      		ret
+ 111               	.LFE11:
+ 113               	.global	main
+ 115               	main:
+ 116               	.LFB12:
+ 117               	.LM23:
+ 118 0024 9F92      		push r9
+ 119 0026 AF92      		push r10
+ 120 0028 BF92      		push r11
+ 121 002a CF92      		push r12
+ 122 002c DF92      		push r13
+ 123 002e EF92      		push r14
+ 124 0030 FF92      		push r15
+ 125 0032 0F93      		push r16
+ 126 0034 1F93      		push r17
+ 127 0036 CF93      		push r28
+ 128 0038 DF93      		push r29
+ 129               	/* prologue: function */
+ 130               	/* frame size = 0 */
+ 131               	.LM24:
+ 132 003a 0E94 0000 		call uartInit
+ 133               	.LM25:
+ 134 003e 60E8      		ldi r22,lo8(9600)
+ 135 0040 75E2      		ldi r23,hi8(9600)
+ 136 0042 80E0      		ldi r24,hlo8(9600)
+ 137 0044 90E0      		ldi r25,hhi8(9600)
+ 138 0046 0E94 0000 		call uartSetBaudRate
+ 139               	.LM26:
+ 140 004a 80E0      		ldi r24,lo8(gs(uartSendByte))
+ 141 004c 90E0      		ldi r25,hi8(gs(uartSendByte))
+ 142 004e 0E94 0000 		call rprintfInit
+ 143               	.LM27:
+ 144 0052 8E9A      		sbi 49-32,6
+ 145               	.LM28:
+ 146 0054 87B3      		in r24,55-32
+ 147 0056 8863      		ori r24,lo8(56)
+ 148 0058 87BB      		out 55-32,r24
+ 149               	.LBB29:
+ 150               	.LM29:
+ 151 005a 9924      		clr r9
+ 152 005c 9394      		inc r9
+ 153 005e 20E0      		ldi r18,lo8(__c.1524)
+ 154 0060 A22E      		mov r10,r18
+ 155 0062 20E0      		ldi r18,hi8(__c.1524)
+ 156 0064 B22E      		mov r11,r18
+ 157 0066 97E7      		ldi r25,lo8(119)
+ 158 0068 C92E      		mov r12,r25
+ 159 006a D12C      		mov r13,__zero_reg__
+ 160               	.LBB30:
+ 161               	.LBB31:
+ 162               	.LBB32:
+ 163               	.LBB33:
+ 164               	.LM30:
+ 165 006c 80E9      		ldi r24,lo8(400)
+ 166 006e E82E      		mov r14,r24
+ 167 0070 81E0      		ldi r24,hi8(400)
+ 168 0072 F82E      		mov r15,r24
+ 169               	.LBE33:
+ 170               	.LBE32:
+ 171               	.LBE31:
+ 172               	.LBE30:
+ 173               	.LBB37:
+ 174               	.LBB38:
+ 175               	.LBB39:
+ 176               	.LBB40:
+ 177 0074 00E2      		ldi r16,lo8(20000)
+ 178 0076 1EE4      		ldi r17,hi8(20000)
+ 179               	.LBE40:
+ 180               	.LBE39:
+ 181               	.LBE38:
+ 182               	.LBE37:
+ 183               	.LM31:
+ 184 0078 C0E0      		ldi r28,lo8(__c.1526)
+ 185 007a D0E0      		ldi r29,hi8(__c.1526)
+ 186               	.L20:
+ 187               	.LM32:
+ 188 007c 0E94 0000 		call uartGetByte
+ 189               	.LM33:
+ 190 0080 8737      		cpi r24,lo8(119)
+ 191 0082 01F4      		brne .L20
+ 192               	.LM34:
+ 193 0084 00D0      		rcall .
+ 194 0086 00D0      		rcall .
+ 195 0088 0F92      		push __tmp_reg__
+ 196 008a EDB7      		in r30,__SP_L__
+ 197 008c FEB7      		in r31,__SP_H__
+ 198 008e 3196      		adiw r30,1
+ 199 0090 ADB7      		in r26,__SP_L__
+ 200 0092 BEB7      		in r27,__SP_H__
+ 201 0094 1196      		adiw r26,1
+ 202 0096 9C92      		st X,r9
+ 203 0098 B282      		std Z+2,r11
+ 204 009a A182      		std Z+1,r10
+ 205 009c D482      		std Z+4,r13
+ 206 009e C382      		std Z+3,r12
+ 207 00a0 0E94 0000 		call rprintf1RamRom
+ 208               	.LM35:
+ 209 00a4 C39A      		sbi 56-32,3
+ 210               	.LM36:
+ 211 00a6 C498      		cbi 56-32,4
+ 212 00a8 80ED      		ldi r24,lo8(2000)
+ 213 00aa 97E0      		ldi r25,hi8(2000)
+ 214               	.LVL3:
+ 215 00ac 0F90      		pop __tmp_reg__
+ 216 00ae 0F90      		pop __tmp_reg__
+ 217 00b0 0F90      		pop __tmp_reg__
+ 218 00b2 0F90      		pop __tmp_reg__
+ 219 00b4 0F90      		pop __tmp_reg__
+ 220               	.L15:
+ 221               	.LBB44:
+ 222               	.LBB36:
+ 223               	.LBB35:
+ 224               	.LBB34:
+ 225               	.LM37:
+ 226 00b6 F701      		movw r30,r14
+ 227               	.LVL4:
+ 228               	/* #APP */
+ 229               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 230 00b8 3197      		1: sbiw r30,1
+ 231 00ba 01F4      		brne 1b
+ 232               	 ;  0 "" 2
+ 233               	/* #NOAPP */
+ 234               	.LBE34:
+ 235               	.LBE35:
+ 236               	.LM38:
+ 237 00bc 0197      		sbiw r24,1
+ 238               	.LM39:
+ 239 00be 01F4      		brne .L15
+ 240               	.LBE36:
+ 241               	.LBE44:
+ 242               	.LM40:
+ 243 00c0 C498      		cbi 56-32,4
+ 244               	.LM41:
+ 245 00c2 C398      		cbi 56-32,3
+ 246               	.LM42:
+ 247 00c4 C59A      		sbi 56-32,5
+ 248               	.LBB45:
+ 249               	.LBB43:
+ 250               	.LBB42:
+ 251               	.LBB41:
+ 252               	.LM43:
+ 253 00c6 C801      		movw r24,r16
+ 254               	.LVL5:
+ 255               	/* #APP */
+ 256               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 257 00c8 0197      		1: sbiw r24,1
+ 258 00ca 01F4      		brne 1b
+ 259               	 ;  0 "" 2
+ 260               	/* #NOAPP */
+ 261               	.LBE41:
+ 262               	.LBE42:
+ 263               	.LBE43:
+ 264               	.LBE45:
+ 265               	.LM44:
+ 266 00cc C598      		cbi 56-32,5
+ 267               	.LM45:
+ 268 00ce 00D0      		rcall .
+ 269 00d0 0F92      		push __tmp_reg__
+ 270 00d2 EDB7      		in r30,__SP_L__
+ 271 00d4 FEB7      		in r31,__SP_H__
+ 272               	.LVL6:
+ 273 00d6 9182      		std Z+1,r9
+ 274 00d8 D383      		std Z+3,r29
+ 275 00da C283      		std Z+2,r28
+ 276 00dc 0E94 0000 		call rprintf1RamRom
+ 277               	.LVL7:
+ 278 00e0 0F90      		pop __tmp_reg__
+ 279 00e2 0F90      		pop __tmp_reg__
+ 280 00e4 0F90      		pop __tmp_reg__
+ 281 00e6 00C0      		rjmp .L20
+ 282               	.LBE29:
+ 283               	.LFE12:
+ 285               		.section	.progmem.data,"a",@progbits
+ 288               	__c.1526:
+ 289 0000 436F 6D70 		.string	"Complete\n"
+ 289      6C65 7465 
+ 289      0A00 
+ 292               	__c.1524:
+ 293 000a 2563 0A00 		.string	"%c\n"
+ 366               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:2      *ABS*:0000003f __SREG__
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:3      *ABS*:0000003e __SP_H__
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:4      *ABS*:0000003d __SP_L__
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:5      *ABS*:00000034 __CCP__
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:18     .text:00000000 configure_ports
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:40     .text:0000000e delay_cycles
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:53     .text:00000010 LED_on
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:67     .text:00000014 LED_off
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:81     .text:00000018 servo_left
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:98     .text:0000001e servo_right
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:115    .text:00000024 main
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:292    .progmem.data:0000000a __c.1524
+C:\Users\SONY\AppData\Local\Temp/ccvOuGLO.s:288    .progmem.data:00000000 __c.1526
+
+UNDEFINED SYMBOLS
+uartInit
+uartSetBaudRate
+uartSendByte
+rprintfInit
+uartGetByte
+rprintf1RamRom

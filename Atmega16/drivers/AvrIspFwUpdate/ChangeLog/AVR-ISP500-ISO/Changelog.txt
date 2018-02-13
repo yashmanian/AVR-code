@@ -1,0 +1,18 @@
+2012-09-20 Stanimir Petev <support @ olimex. com>
+
+	* avr-isp500-iso: release 1.05 fixed the problem in stand-alone mode, 
+	which occured when trying to program both flash and eeprom
+	* avr-isp500-iso: release 1.05 fixed a problem causing a delay in 
+	programming if using hex files with little meaningful bits
+
+2008-09-12  Dimitar Dimitrov  <dinuxbg@gmail.com>
+
+	* avr-isp500-iso: Release 01.01 . Fixed the OSCCAL issue.
+
+2008-03-27  Dimitar Dimitrov  <dinuxbg@gmail.com>
+
+	* avr-isp500-iso: Initial release 01.00 .
+
+
+	
+

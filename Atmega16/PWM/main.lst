@@ -1,0 +1,259 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	configure_ports
+  18               	configure_ports:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 14BA      		out 52-32,__zero_reg__
+  25               	.LM3:
+  26 0002 15BA      		out 53-32,__zero_reg__
+  27               	.LM4:
+  28 0004 8FEF      		ldi r24,lo8(-1)
+  29 0006 81BB      		out 49-32,r24
+  30               	.LM5:
+  31 0008 87EC      		ldi r24,lo8(-57)
+  32 000a 87BB      		out 55-32,r24
+  33               	/* epilogue start */
+  34               	.LM6:
+  35 000c 0895      		ret
+  36               	.LFE6:
+  38               	.global	delay_cycles
+  40               	delay_cycles:
+  41               	.LFB7:
+  42               	.LM7:
+  43               	.LVL0:
+  44               	/* prologue: function */
+  45               	/* frame size = 0 */
+  46               	/* epilogue start */
+  47               	.LM8:
+  48 000e 0895      		ret
+  49               	.LFE7:
+  51               	.global	LED_on
+  53               	LED_on:
+  54               	.LFB8:
+  55               	.LM9:
+  56               	/* prologue: function */
+  57               	/* frame size = 0 */
+  58               	.LM10:
+  59 0010 9498      		cbi 50-32,4
+  60               	/* epilogue start */
+  61               	.LM11:
+  62 0012 0895      		ret
+  63               	.LFE8:
+  65               	.global	LED_off
+  67               	LED_off:
+  68               	.LFB9:
+  69               	.LM12:
+  70               	/* prologue: function */
+  71               	/* frame size = 0 */
+  72               	.LM13:
+  73 0014 949A      		sbi 50-32,4
+  74               	/* epilogue start */
+  75               	.LM14:
+  76 0016 0895      		ret
+  77               	.LFE9:
+  79               	.global	servo_left
+  81               	servo_left:
+  82               	.LFB10:
+  83               	.LM15:
+  84               	.LVL1:
+  85               	/* prologue: function */
+  86               	/* frame size = 0 */
+  87               	.LM16:
+  88 0018 929A      		sbi 50-32,2
+  89               	.LM17:
+  90 001a 9298      		cbi 50-32,2
+  91               	/* epilogue start */
+  92               	.LM18:
+  93 001c 0895      		ret
+  94               	.LFE10:
+  96               	.global	servo_right
+  98               	servo_right:
+  99               	.LFB11:
+ 100               	.LM19:
+ 101               	.LVL2:
+ 102               	/* prologue: function */
+ 103               	/* frame size = 0 */
+ 104               	.LM20:
+ 105 001e 939A      		sbi 50-32,3
+ 106               	.LM21:
+ 107 0020 9398      		cbi 50-32,3
+ 108               	/* epilogue start */
+ 109               	.LM22:
+ 110 0022 0895      		ret
+ 111               	.LFE11:
+ 113               	.global	InitPWM
+ 115               	InitPWM:
+ 116               	.LFB12:
+ 117               	.LM23:
+ 118               	/* prologue: function */
+ 119               	/* frame size = 0 */
+ 120               	.LM24:
+ 121 0024 8FB5      		in r24,79-32
+ 122 0026 8168      		ori r24,lo8(-127)
+ 123 0028 8FBD      		out 79-32,r24
+ 124               	.LM25:
+ 125 002a 8EB5      		in r24,78-32
+ 126 002c 8960      		ori r24,lo8(9)
+ 127 002e 8EBD      		out 78-32,r24
+ 128               	.LM26:
+ 129 0030 8D9A      		sbi 49-32,5
+ 130               	/* epilogue start */
+ 131               	.LM27:
+ 132 0032 0895      		ret
+ 133               	.LFE12:
+ 135               	.global	SetPWMOutput
+ 137               	SetPWMOutput:
+ 138               	.LFB13:
+ 139               	.LM28:
+ 140               	.LVL3:
+ 141               	/* prologue: function */
+ 142               	/* frame size = 0 */
+ 143               	.LM29:
+ 144 0034 90E0      		ldi r25,lo8(0)
+ 145 0036 9BBD      		out (74)+1-32,r25
+ 146 0038 8ABD      		out 74-32,r24
+ 147               	.LVL4:
+ 148               	/* epilogue start */
+ 149               	.LM30:
+ 150 003a 0895      		ret
+ 151               	.LFE13:
+ 153               	.global	Wait
+ 155               	Wait:
+ 156               	.LFB14:
+ 157               	.LM31:
+ 158               	/* prologue: function */
+ 159               	/* frame size = 0 */
+ 160               	.LBB16:
+ 161               	.LBB17:
+ 162               	.LM32:
+ 163 003c 80E1      		ldi r24,lo8(10000)
+ 164 003e 97E2      		ldi r25,hi8(10000)
+ 165               	.LVL5:
+ 166               	/* #APP */
+ 167               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 168 0040 0197      		1: sbiw r24,1
+ 169 0042 01F4      		brne 1b
+ 170               	 ;  0 "" 2
+ 171               	/* epilogue start */
+ 172               	/* #NOAPP */
+ 173               	.LBE17:
+ 174               	.LBE16:
+ 175               	.LM33:
+ 176 0044 0895      		ret
+ 177               	.LFE14:
+ 179               	.global	main
+ 181               	main:
+ 182               	.LFB15:
+ 183               	.LM34:
+ 184 0046 CF93      		push r28
+ 185 0048 DF93      		push r29
+ 186               	/* prologue: function */
+ 187               	/* frame size = 0 */
+ 188               	.LM35:
+ 189 004a 0E94 0000 		call uartInit
+ 190               	.LM36:
+ 191 004e 60E8      		ldi r22,lo8(9600)
+ 192 0050 75E2      		ldi r23,hi8(9600)
+ 193 0052 80E0      		ldi r24,hlo8(9600)
+ 194 0054 90E0      		ldi r25,hhi8(9600)
+ 195 0056 0E94 0000 		call uartSetBaudRate
+ 196               	.LM37:
+ 197 005a 80E0      		ldi r24,lo8(gs(uartSendByte))
+ 198 005c 90E0      		ldi r25,hi8(gs(uartSendByte))
+ 199 005e 0E94 0000 		call rprintfInit
+ 200               	.LM38:
+ 201 0062 0E94 0000 		call InitPWM
+ 202               	.LM39:
+ 203 0066 0E94 0000 		call a2dInit
+ 204               	.LM40:
+ 205 006a 87E0      		ldi r24,lo8(7)
+ 206 006c 0E94 0000 		call a2dSetPrescaler
+ 207               	.LM41:
+ 208 0070 81E0      		ldi r24,lo8(1)
+ 209 0072 0E94 0000 		call a2dSetReference
+ 210               	.LBB18:
+ 211               	.LM42:
+ 212 0076 C0E0      		ldi r28,lo8(__c.1543)
+ 213 0078 D0E0      		ldi r29,hi8(__c.1543)
+ 214               	.L20:
+ 215               	.LM43:
+ 216 007a 81E0      		ldi r24,lo8(1)
+ 217 007c 0E94 0000 		call a2dConvert8bit
+ 218               	.LBB19:
+ 219               	.LBB20:
+ 220               	.LM44:
+ 221 0080 282F      		mov r18,r24
+ 222 0082 30E0      		ldi r19,lo8(0)
+ 223 0084 3BBD      		out (74)+1-32,r19
+ 224 0086 2ABD      		out 74-32,r18
+ 225               	.LBE20:
+ 226               	.LBE19:
+ 227               	.LM45:
+ 228 0088 00D0      		rcall .
+ 229 008a 00D0      		rcall .
+ 230 008c 0F92      		push __tmp_reg__
+ 231 008e EDB7      		in r30,__SP_L__
+ 232 0090 FEB7      		in r31,__SP_H__
+ 233 0092 3196      		adiw r30,1
+ 234 0094 91E0      		ldi r25,lo8(1)
+ 235 0096 ADB7      		in r26,__SP_L__
+ 236 0098 BEB7      		in r27,__SP_H__
+ 237 009a 1196      		adiw r26,1
+ 238 009c 9C93      		st X,r25
+ 239 009e D283      		std Z+2,r29
+ 240 00a0 C183      		std Z+1,r28
+ 241 00a2 8383      		std Z+3,r24
+ 242 00a4 1482      		std Z+4,__zero_reg__
+ 243 00a6 0E94 0000 		call rprintf1RamRom
+ 244 00aa 0F90      		pop __tmp_reg__
+ 245 00ac 0F90      		pop __tmp_reg__
+ 246 00ae 0F90      		pop __tmp_reg__
+ 247 00b0 0F90      		pop __tmp_reg__
+ 248 00b2 0F90      		pop __tmp_reg__
+ 249 00b4 00C0      		rjmp .L20
+ 250               	.LBE18:
+ 251               	.LFE15:
+ 253               		.section	.progmem.data,"a",@progbits
+ 256               	__c.1543:
+ 257 0000 2564 0A00 		.string	"%d\n"
+ 354               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:2      *ABS*:0000003f __SREG__
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:3      *ABS*:0000003e __SP_H__
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:4      *ABS*:0000003d __SP_L__
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:5      *ABS*:00000034 __CCP__
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:18     .text:00000000 configure_ports
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:40     .text:0000000e delay_cycles
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:53     .text:00000010 LED_on
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:67     .text:00000014 LED_off
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:81     .text:00000018 servo_left
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:98     .text:0000001e servo_right
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:115    .text:00000024 InitPWM
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:137    .text:00000034 SetPWMOutput
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:155    .text:0000003c Wait
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:181    .text:00000046 main
+C:\Users\YASHMA~1\AppData\Local\Temp/cccVBsfu.s:256    .progmem.data:00000000 __c.1543
+
+UNDEFINED SYMBOLS
+uartInit
+uartSetBaudRate
+uartSendByte
+rprintfInit
+a2dInit
+a2dSetPrescaler
+a2dSetReference
+a2dConvert8bit
+rprintf1RamRom

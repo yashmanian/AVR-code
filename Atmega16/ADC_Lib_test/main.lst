@@ -1,0 +1,185 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	configure_ports
+  18               	configure_ports:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 14BA      		out 52-32,__zero_reg__
+  25               	.LM3:
+  26 0002 15BA      		out 53-32,__zero_reg__
+  27               	.LM4:
+  28 0004 8FEF      		ldi r24,lo8(-1)
+  29 0006 81BB      		out 49-32,r24
+  30               	.LM5:
+  31 0008 87EC      		ldi r24,lo8(-57)
+  32 000a 87BB      		out 55-32,r24
+  33               	/* epilogue start */
+  34               	.LM6:
+  35 000c 0895      		ret
+  36               	.LFE6:
+  38               	.global	delay_cycles
+  40               	delay_cycles:
+  41               	.LFB7:
+  42               	.LM7:
+  43               	.LVL0:
+  44               	/* prologue: function */
+  45               	/* frame size = 0 */
+  46               	/* epilogue start */
+  47               	.LM8:
+  48 000e 0895      		ret
+  49               	.LFE7:
+  51               	.global	LED_on
+  53               	LED_on:
+  54               	.LFB8:
+  55               	.LM9:
+  56               	/* prologue: function */
+  57               	/* frame size = 0 */
+  58               	.LM10:
+  59 0010 9498      		cbi 50-32,4
+  60               	/* epilogue start */
+  61               	.LM11:
+  62 0012 0895      		ret
+  63               	.LFE8:
+  65               	.global	LED_off
+  67               	LED_off:
+  68               	.LFB9:
+  69               	.LM12:
+  70               	/* prologue: function */
+  71               	/* frame size = 0 */
+  72               	.LM13:
+  73 0014 949A      		sbi 50-32,4
+  74               	/* epilogue start */
+  75               	.LM14:
+  76 0016 0895      		ret
+  77               	.LFE9:
+  79               	.global	servo_left
+  81               	servo_left:
+  82               	.LFB10:
+  83               	.LM15:
+  84               	.LVL1:
+  85               	/* prologue: function */
+  86               	/* frame size = 0 */
+  87               	.LM16:
+  88 0018 929A      		sbi 50-32,2
+  89               	.LM17:
+  90 001a 9298      		cbi 50-32,2
+  91               	/* epilogue start */
+  92               	.LM18:
+  93 001c 0895      		ret
+  94               	.LFE10:
+  96               	.global	servo_right
+  98               	servo_right:
+  99               	.LFB11:
+ 100               	.LM19:
+ 101               	.LVL2:
+ 102               	/* prologue: function */
+ 103               	/* frame size = 0 */
+ 104               	.LM20:
+ 105 001e 939A      		sbi 50-32,3
+ 106               	.LM21:
+ 107 0020 9398      		cbi 50-32,3
+ 108               	/* epilogue start */
+ 109               	.LM22:
+ 110 0022 0895      		ret
+ 111               	.LFE11:
+ 113               	.global	InitPWM
+ 115               	InitPWM:
+ 116               	.LFB12:
+ 117               	.LM23:
+ 118               	/* prologue: function */
+ 119               	/* frame size = 0 */
+ 120               	.LM24:
+ 121 0024 83B7      		in r24,83-32
+ 122 0026 8966      		ori r24,lo8(105)
+ 123 0028 83BF      		out 83-32,r24
+ 124               	.LM25:
+ 125 002a BB9A      		sbi 55-32,3
+ 126               	/* epilogue start */
+ 127               	.LM26:
+ 128 002c 0895      		ret
+ 129               	.LFE12:
+ 131               	.global	SetPWMOutput
+ 133               	SetPWMOutput:
+ 134               	.LFB13:
+ 135               	.LM27:
+ 136               	.LVL3:
+ 137               	/* prologue: function */
+ 138               	/* frame size = 0 */
+ 139               	.LM28:
+ 140 002e 8CBF      		out 92-32,r24
+ 141               	/* epilogue start */
+ 142               	.LM29:
+ 143 0030 0895      		ret
+ 144               	.LFE13:
+ 146               	.global	main
+ 148               	main:
+ 149               	.LFB14:
+ 150               	.LM30:
+ 151               	/* prologue: function */
+ 152               	/* frame size = 0 */
+ 153               	.LM31:
+ 154 0032 0E94 0000 		call a2dInit
+ 155               	.LM32:
+ 156 0036 85E0      		ldi r24,lo8(5)
+ 157 0038 0E94 0000 		call a2dSetPrescaler
+ 158               	.LM33:
+ 159 003c 81E0      		ldi r24,lo8(1)
+ 160 003e 0E94 0000 		call a2dSetReference
+ 161               	.LM34:
+ 162 0042 8E9A      		sbi 49-32,6
+ 163               	.LBB14:
+ 164               	.LBB15:
+ 165               	.LM35:
+ 166 0044 83B7      		in r24,83-32
+ 167 0046 8966      		ori r24,lo8(105)
+ 168 0048 83BF      		out 83-32,r24
+ 169               	.LM36:
+ 170 004a BB9A      		sbi 55-32,3
+ 171               	.L18:
+ 172               	.LBE15:
+ 173               	.LBE14:
+ 174               	.LM37:
+ 175 004c 80E0      		ldi r24,lo8(0)
+ 176 004e 0E94 0000 		call a2dConvert8bit
+ 177               	.LBB16:
+ 178               	.LBB17:
+ 179               	.LM38:
+ 180 0052 8CBF      		out 92-32,r24
+ 181               	.LVL4:
+ 182 0054 00C0      		rjmp .L18
+ 183               	.LBE17:
+ 184               	.LBE16:
+ 185               	.LFE14:
+ 275               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:2      *ABS*:0000003f __SREG__
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:3      *ABS*:0000003e __SP_H__
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:4      *ABS*:0000003d __SP_L__
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:5      *ABS*:00000034 __CCP__
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:18     .text:00000000 configure_ports
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:40     .text:0000000e delay_cycles
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:53     .text:00000010 LED_on
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:67     .text:00000014 LED_off
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:81     .text:00000018 servo_left
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:98     .text:0000001e servo_right
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:115    .text:00000024 InitPWM
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:133    .text:0000002e SetPWMOutput
+C:\Users\YASHMA~1\AppData\Local\Temp/cc9zvYWx.s:148    .text:00000032 main
+
+UNDEFINED SYMBOLS
+a2dInit
+a2dSetPrescaler
+a2dSetReference
+a2dConvert8bit

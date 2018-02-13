@@ -1,0 +1,124 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+  15               	.Ltext0:
+  16               	.global	main
+  18               	main:
+  19               	.LFB6:
+  20               	.LM1:
+  21               	/* prologue: function */
+  22               	/* frame size = 0 */
+  23               	.LM2:
+  24 0000 81B3      		in r24,49-32
+  25 0002 8FEF      		ldi r24,lo8(-1)
+  26 0004 81BB      		out 49-32,r24
+  27               	.LM3:
+  28 0006 8FB5      		in r24,79-32
+  29 0008 826C      		ori r24,lo8(-62)
+  30 000a 8FBD      		out 79-32,r24
+  31               	.LM4:
+  32 000c 8EB5      		in r24,78-32
+  33 000e 8D61      		ori r24,lo8(29)
+  34 0010 8EBD      		out 78-32,r24
+  35               	.LM5:
+  36 0012 8FE1      		ldi r24,lo8(19999)
+  37 0014 9EE4      		ldi r25,hi8(19999)
+  38 0016 97BD      		out (70)+1-32,r25
+  39 0018 86BD      		out 70-32,r24
+  40               	.LBB18:
+  41               	.LBB19:
+  42               	.LBB20:
+  43               	.LBB21:
+  44               	.LM6:
+  45 001a 20E9      		ldi r18,lo8(400)
+  46 001c 31E0      		ldi r19,hi8(400)
+  47               	.LVL0:
+  48               	.L4:
+  49               	.LBE21:
+  50               	.LBE20:
+  51               	.LBE19:
+  52               	.LBE18:
+  53               	.LM7:
+  54 001e 86B5      		in r24,70-32
+  55 0020 97B5      		in r25,(70)+1-32
+  56               	.LVL1:
+  57 0022 8052      		subi r24,lo8(-(-800))
+  58 0024 9340      		sbci r25,hi8(-(-800))
+  59 0026 9BBD      		out (74)+1-32,r25
+  60 0028 8ABD      		out 74-32,r24
+  61 002a 88EE      		ldi r24,lo8(1000)
+  62 002c 93E0      		ldi r25,hi8(1000)
+  63               	.LVL2:
+  64               	.L2:
+  65               	.LBB25:
+  66               	.LBB24:
+  67               	.LBB23:
+  68               	.LBB22:
+  69               	.LM8:
+  70 002e F901      		movw r30,r18
+  71               	.LVL3:
+  72               	/* #APP */
+  73               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+  74 0030 3197      		1: sbiw r30,1
+  75 0032 01F4      		brne 1b
+  76               	 ;  0 "" 2
+  77               	/* #NOAPP */
+  78               	.LBE22:
+  79               	.LBE23:
+  80               	.LM9:
+  81 0034 0197      		sbiw r24,1
+  82               	.LM10:
+  83 0036 01F4      		brne .L2
+  84               	.LBE24:
+  85               	.LBE25:
+  86               	.LM11:
+  87 0038 86B5      		in r24,70-32
+  88 003a 97B5      		in r25,(70)+1-32
+  89               	.LVL4:
+  90 003c 8052      		subi r24,lo8(-(-800))
+  91 003e 9340      		sbci r25,hi8(-(-800))
+  92 0040 9BBD      		out (74)+1-32,r25
+  93 0042 8ABD      		out 74-32,r24
+  94 0044 88EE      		ldi r24,lo8(1000)
+  95 0046 93E0      		ldi r25,hi8(1000)
+  96               	.LVL5:
+  97               	.L3:
+  98               	.LBB26:
+  99               	.LBB27:
+ 100               	.LBB28:
+ 101               	.LBB29:
+ 102               	.LM12:
+ 103 0048 F901      		movw r30,r18
+ 104               	.LVL6:
+ 105               	/* #APP */
+ 106               	 ;  105 "c:/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 107 004a 3197      		1: sbiw r30,1
+ 108 004c 01F4      		brne 1b
+ 109               	 ;  0 "" 2
+ 110               	/* #NOAPP */
+ 111               	.LBE29:
+ 112               	.LBE28:
+ 113               	.LM13:
+ 114 004e 0197      		sbiw r24,1
+ 115               	.LM14:
+ 116 0050 01F4      		brne .L3
+ 117 0052 00C0      		rjmp .L4
+ 118               	.LBE27:
+ 119               	.LBE26:
+ 120               	.LFE6:
+ 146               	.Letext0:
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\DOCUME~1\yash\LOCALS~1\Temp/cciVbIjo.s:2      *ABS*:0000003f __SREG__
+C:\DOCUME~1\yash\LOCALS~1\Temp/cciVbIjo.s:3      *ABS*:0000003e __SP_H__
+C:\DOCUME~1\yash\LOCALS~1\Temp/cciVbIjo.s:4      *ABS*:0000003d __SP_L__
+C:\DOCUME~1\yash\LOCALS~1\Temp/cciVbIjo.s:5      *ABS*:00000034 __CCP__
+C:\DOCUME~1\yash\LOCALS~1\Temp/cciVbIjo.s:6      *ABS*:00000000 __tmp_reg__
+C:\DOCUME~1\yash\LOCALS~1\Temp/cciVbIjo.s:7      *ABS*:00000001 __zero_reg__
+C:\DOCUME~1\yash\LOCALS~1\Temp/cciVbIjo.s:18     .text:00000000 main
+
+NO UNDEFINED SYMBOLS
